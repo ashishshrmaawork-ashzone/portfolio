@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
       beforeFiles: [
         { source: "/", destination: "/original/index.html" },
         { source: "/index.html", destination: "/original/index.html" },
+        { source: "/portfolio.html", destination: "/original/portfolio.html" },
         { source: "/project-details.html", destination: "/original/project-details.html" },
         { source: "/blog.html", destination: "/original/blog.html" },
         { source: "/blog-detail.html", destination: "/original/blog-detail.html" },

@@ -88,23 +88,7 @@
         reducedMotion.addEventListener('change', stop);
         document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
     }
-    const tasks = [];
-    const services = document.querySelector('#features .row.row--25');
-    if (services) {
-        const templates = [...services.children].map(card => card.cloneNode(true));
-        tasks.push(populate('services', services, items => items.forEach((item, i) => {
-            const card = templates[i % templates.length].cloneNode(true);
-            card.querySelector('.title a').textContent = plain(item.title);
-            card.querySelector('.description').textContent = plain(item.content);
-            card.querySelectorAll('a').forEach(link => link.href = '#contacts');
-            card.classList.add('aos-animate');
-            services.append(card);
-        })));
-    }
-    const projects = document.querySelector('#portfolio .row.row--25');
-    if (projects) {
-        const template = projects.firstElementChild.cloneNode(true);
-        tasks.push(populate('projects', projects, items => items.forEach(item => {
+    function renderProjectCard(item, template) {
             const card = template.cloneNode(true);
             const link = 'project-details.html?project=' + encodeURIComponent(item.slug);
             const box = card.querySelector('.rn-portfolio');
@@ -133,8 +117,28 @@
             if (source) { image.src = source; image.alt = plain(item.title); image.loading = 'lazy'; }
             else image.remove();
             card.classList.add('aos-animate');
-            projects.append(card);
             autoScrollPreview(box);
+            return card;
+    }
+    window.portfolioApi.renderProjectCard = renderProjectCard;
+    const tasks = [];
+    const services = document.querySelector('#features .row.row--25');
+    if (services) {
+        const templates = [...services.children].map(card => card.cloneNode(true));
+        tasks.push(populate('services', services, items => items.forEach((item, i) => {
+            const card = templates[i % templates.length].cloneNode(true);
+            card.querySelector('.title a').textContent = plain(item.title);
+            card.querySelector('.description').textContent = plain(item.content);
+            card.querySelectorAll('a').forEach(link => link.href = '#contacts');
+            card.classList.add('aos-animate');
+            services.append(card);
+        })));
+    }
+    const projects = document.querySelector('#portfolio .row.row--25');
+    if (projects) {
+        const template = projects.firstElementChild.cloneNode(true);
+        tasks.push(populate('projects', projects, items => items.slice(0, 6).forEach(item => {
+            projects.append(renderProjectCard(item, template));
         })));
     }
     for (const [id, name] of [['professional', 'workexperience'], ['education', 'education']]) {

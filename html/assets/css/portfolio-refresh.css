@@ -666,3 +666,5 @@ html { scroll-padding-top:80px; }
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
+
+.portfolio-view-more { display:flex; justify-content:center; margin-top:36px; }
