@@ -617,7 +617,7 @@ html { scroll-padding-top:80px; }
 #portfolio .rn-portfolio,
 #portfolio .mobile-portfolio-track .rn-portfolio {
     box-sizing: border-box;
-    height: 350px;
+    height: 415px;
     width: 100%;
     padding: 20px;
 }
@@ -643,3 +643,26 @@ html { scroll-padding-top:80px; }
 /* Keep the full screenshot scrollable instead of zooming or cropping it. */
 #portfolio .rn-portfolio:hover .thumbnail,
 #portfolio .rn-portfolio:hover .thumbnail img { transform: none; }
+
+#portfolio .rn-portfolio .content > * { flex-shrink: 0; }
+#portfolio .rn-portfolio .project-tech,
+#portfolio .rn-portfolio .project-excerpt {
+    width: 100%;
+    margin: 0 0 8px;
+    overflow: hidden;
+    color: #58718e;
+    font-size: 12px;
+    line-height: 18px;
+}
+#portfolio .rn-portfolio .project-tech {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #2563eb;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+#portfolio .rn-portfolio .project-excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}

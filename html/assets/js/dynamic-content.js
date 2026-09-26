@@ -60,6 +60,34 @@
         } finally { host.removeAttribute('aria-busy'); }
     }
     window.portfolioApi = { collection, plain, url };
+    function autoScrollPreview(card) {
+        const preview = card.querySelector('.thumbnail');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let frame = 0, previous = 0, position = 0;
+        function stop() { cancelAnimationFrame(frame); frame = 0; previous = 0; }
+        function tick(time) {
+            const max = preview.scrollHeight - preview.clientHeight;
+            if (max <= 0 || reducedMotion.matches) { stop(); return; }
+            if (previous) position += Math.min(time - previous, 50) * 0.09;
+            previous = time;
+            preview.scrollTop = Math.min(position, max);
+            if (position < max) frame = requestAnimationFrame(tick);
+            else stop();
+        }
+        card.addEventListener('pointerenter', event => {
+            if (event.pointerType !== 'mouse' || reducedMotion.matches) return;
+            stop(); position = preview.scrollTop;
+            frame = requestAnimationFrame(tick);
+        });
+        card.addEventListener('pointerleave', () => {
+            stop(); preview.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+        });
+        // Manual scrolling takes over immediately, including on touch screens.
+        preview.addEventListener('wheel', stop, { passive: true });
+        preview.addEventListener('pointerdown', stop);
+        reducedMotion.addEventListener('change', stop);
+        document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+    }
     const tasks = [];
     const services = document.querySelector('#features .row.row--25');
     if (services) {
@@ -85,12 +113,28 @@
             card.querySelector('.title a').textContent = plain(item.title);
             card.querySelector('.category-list a').textContent = plain(item.category || 'Web development');
             card.querySelector('.meta')?.remove();
+            const details = card.querySelector('.project-details-link');
+            if (item.tech) {
+                const technology = document.createElement('p');
+                technology.className = 'project-tech';
+                technology.textContent = plain(item.tech);
+                technology.title = technology.textContent;
+                details.before(technology);
+            }
+            const excerpt = plain(item.content).trim();
+            if (excerpt) {
+                const description = document.createElement('p');
+                description.className = 'project-excerpt';
+                description.textContent = excerpt;
+                details.before(description);
+            }
             const image = card.querySelector('img');
             const source = url(item.thumbnail_image);
             if (source) { image.src = source; image.alt = plain(item.title); image.loading = 'lazy'; }
             else image.remove();
             card.classList.add('aos-animate');
             projects.append(card);
+            autoScrollPreview(box);
         })));
     }
     for (const [id, name] of [['professional', 'workexperience'], ['education', 'education']]) {
