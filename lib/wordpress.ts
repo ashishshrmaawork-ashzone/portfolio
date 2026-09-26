@@ -1,5 +1,5 @@
 const defaultApiUrl = "https://reactapp.kgkrealty.com/ashportfolio/wp-json";
-const apiUrl = (process.env.WORDPRESS_API_URL || defaultApiUrl).replace(/\/+$/, "");
+const apiUrl = (process.env.WORDPRESS_API_URL?.trim() || defaultApiUrl).replace(/\/+$/, "");
 const customApiUrl = apiUrl.endsWith("/custom/v1")
   ? apiUrl
   : `${apiUrl}/custom/v1`;
@@ -51,6 +51,7 @@ interface PortfolioPage {
 async function requestJson<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${customApiUrl}${path}`, {
     ...init,
+    signal: AbortSignal.timeout(10000),
     headers: {
       Accept: "application/json",
       ...init?.headers,
@@ -122,6 +123,7 @@ export async function getProjects(): Promise<PortfolioProject[]> {
 
 export async function getProject(slug: string): Promise<PortfolioProject | null> {
   const response = await fetch(`${customApiUrl}/portfolio/${encodeURIComponent(slug)}`, {
+    signal: AbortSignal.timeout(10000),
     headers: { Accept: "application/json" },
     next: { revalidate: 300 },
   });
@@ -180,6 +182,7 @@ export async function submitContactMessage(
 ): Promise<Response> {
   return fetch(`${customApiUrl}/contact`, {
     method: "POST",
+    signal: AbortSignal.timeout(15000),
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify(payload),
     cache: "no-store",

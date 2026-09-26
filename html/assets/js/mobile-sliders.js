@@ -1,4 +1,5 @@
-(() => {
+(async () => {
+    await window.portfolioContentReady;
     const mobile = window.matchMedia('(max-width: 767px)');
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     const sliders = [];
@@ -62,7 +63,7 @@
         return sync;
     }
     const portfolio = document.querySelector('#portfolio .row.row--25');
-    if (portfolio) {
+    if (portfolio && portfolio.querySelector(".rn-portfolio")) {
         portfolio.classList.add('mobile-portfolio-track');
         portfolio.id = 'mobile-portfolio-track';
         controls(portfolio, [...portfolio.children], 'portfolio project');

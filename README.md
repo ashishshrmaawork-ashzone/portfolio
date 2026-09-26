@@ -1,29 +1,34 @@
 # Ashish Sharma Portfolio
 
-This is a Next.js App Router portfolio powered by the public WordPress REST API.
-The homepage loads the live project, service, experience, education, and testimonial
-content from the site's `custom/v1` endpoints. Project detail pages use the
-`custom/v1/portfolio/{slug}` endpoint.
+The original design in html/index.html is the source for the deployed homepage.
+Next.js serves this HTML and provides API routes for live WordPress content.
+Services, projects (all pages), work experience, education and testimonials load
+independently so an unavailable API cannot crash the entire homepage.
+Project details use the same original HTML design and live project data.
+Contact and quote forms submit through /api/contact.
+The blog remains the existing local content; no blog API was supplied.
 
-## Run locally
+## Local development
 
-```bash
-npm install
-npm run dev
-```
+Run npm install, then npm run dev. Open http://localhost:3000.
+Use the local server to test the API proxy and forms. Opening html/index.html
+directly uses the public WordPress API and depends on its browser CORS settings.
 
-Open http://localhost:3000. To use another WordPress installation, set
-`WORDPRESS_API_URL` to its REST API root (copy `.env.example` to `.env.local`).
-The default points to the WordPress site provided for this portfolio. The value
-can also point directly to the `custom/v1` API endpoint.
+## WordPress
 
-## Production
+Copy .env.example to .env.local if needed. WORDPRESS_API_URL accepts the REST
+root (ending in /wp-json) or the custom API base (ending in /custom/v1).
+Default: https://reactapp.kgkrealty.com/ashportfolio/wp-json
 
-```bash
-npm run build
-npm start
-```
+## Deployment
 
-The contact form sends the submitted fields through the Next.js API route to
-the WordPress `custom/v1/contact` endpoint.
-"# portfolio" 
+Use the Next.js framework preset, repository root as Root Directory, and
+npm run build as the build command on Vercel. Leave Output Directory at its
+default. Set WORDPRESS_API_URL if overriding the default, then redeploy.
+The prebuild/predev scripts copy html/ into the ignored public/original/
+directory. Edit html/ rather than the generated copy.
+
+## Validation
+
+Run npm run build. Read-only content requests are safe to test; successful
+form submissions deliver real messages and should only be tested deliberately.

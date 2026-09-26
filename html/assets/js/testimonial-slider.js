@@ -1,12 +1,18 @@
-(() => {
+(async () => {
     const host = document.getElementById('google-reviews-list');
     if (!host) return;
-    // Replace these clearly labelled placeholders with approved client feedback.
-    const reviews = [
-        { author: 'Your Client Name', category: 'Website development', image: 'final-home--2nd.png', text: 'Replace this sample text with a real Google review from your client.' },
-        { author: 'Client Name', category: 'Application development', image: 'final-home--1st.png', text: 'Add genuine feedback here after copying it from your Google Business Profile.' },
-        { author: 'Happy Client', category: 'Ongoing collaboration', image: 'final-home--3rd.png', text: 'This is editable local review content. Replace it with verified customer feedback.' }
-    ];
+    host.textContent = 'Loading testimonials?';
+    let reviews;
+    try {
+        const items = await window.portfolioApi.collection('testimonials');
+        reviews = items.map(item => ({ author: window.portfolioApi.plain(item.title), category: window.portfolioApi.plain(item.review_title || item.designation), image: window.portfolioApi.url(item.photo), text: window.portfolioApi.plain(item.review), detail: window.portfolioApi.plain(item.review_detail), designation: window.portfolioApi.plain(item.designation) }));
+    } catch (error) {
+        console.error('Testimonials failed', error);
+        host.className = 'stories-slider';
+        host.textContent = 'Testimonials are temporarily unavailable.';
+        return;
+    }
+    if (!reviews.length) { host.className = 'stories-slider'; host.textContent = 'No testimonials published yet.'; return; }
     host.className = 'stories-slider';
     host.removeAttribute('aria-live');
     host.setAttribute('role', 'region');
@@ -27,7 +33,7 @@
         const top = document.createElement('div');
         top.className = 'story-top';
         const tag = document.createElement('span');
-        tag.textContent = 'Sample review';
+        tag.textContent = 'Client feedback';
         const quote = document.createElement('span');
         quote.className = 'story-quote';
         quote.setAttribute('aria-hidden', 'true');
@@ -51,15 +57,15 @@
         const portrait = document.createElement('div');
         portrait.className = 'story-portrait';
         const photo = document.createElement('img');
-        photo.src = 'assets/images/' + review.image;
-        photo.alt = 'Sample portrait for testimonial layout';
+        if (review.image) photo.src = review.image; else photo.hidden = true;
+        photo.alt = review.author;
         photo.width = 335;
         photo.height = 252;
         photo.loading = index === 0 ? 'eager' : 'lazy';
         photo.decoding = 'async';
         const caption = document.createElement('span');
         caption.className = 'story-photo-note';
-        caption.textContent = 'Sample portrait';
+        caption.textContent = review.designation;
         portrait.append(photo, caption, footer);
         const body = document.createElement('div');
         body.className = 'story-body';
@@ -67,7 +73,7 @@
         heading.textContent = review.category;
         const note = document.createElement('p');
         note.className = 'story-project-note';
-        note.textContent = 'Client experience / Portfolio';
+        note.textContent = review.detail;
         body.append(top, heading, note, text);
         card.append(portrait, body);
         track.append(card);
