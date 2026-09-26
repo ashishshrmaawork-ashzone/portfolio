@@ -1,6 +1,7 @@
 (async () => {
     if (!document.getElementById('project-detail')) return;
     const loading = document.createElement('p');
+    loading.className = 'shell';
     loading.setAttribute('role', 'status'); loading.textContent = 'Loading project?';
     document.getElementById('project-content').before(loading);
     try {
@@ -17,6 +18,7 @@
         const text = (id, value) => { document.getElementById(id).textContent = plain(value); };
         text('project-category', project.category);
         text('project-title', project.title);
+        text('project-crumb', project.title);
         text('project-number', String(index + 1).padStart(2, '0'));
         text('preview-category', project.category);
         text('summary-category', project.category);

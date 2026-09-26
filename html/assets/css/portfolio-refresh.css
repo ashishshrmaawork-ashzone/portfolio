@@ -609,3 +609,30 @@ html { scroll-padding-top:80px; }
 #portfolio .rn-portfolio .project-details-link {
     margin-top: auto;
 }
+
+/* Compact, fixed-height project cards on desktop and mobile. */
+#portfolio .rn-portfolio,
+#portfolio .mobile-portfolio-track .rn-portfolio {
+    box-sizing: border-box;
+    height: 350px;
+    width: 100%;
+    padding: 20px;
+}
+#portfolio .rn-portfolio .thumbnail {
+    height: 150px;
+    aspect-ratio: auto;
+}
+#portfolio .rn-portfolio .content { min-height: 0; padding-top: 12px; }
+#portfolio .rn-portfolio .content .category-info { margin: 0 0 6px; }
+#portfolio .rn-portfolio .content .category-list a { font-size: 11px; line-height: 16px; }
+#portfolio .rn-portfolio .content .title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    min-height: 0;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0 0 8px;
+}
+#portfolio .rn-portfolio .project-details-link { flex-shrink: 0; }
