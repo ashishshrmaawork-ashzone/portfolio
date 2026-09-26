@@ -574,20 +574,23 @@ html { scroll-padding-top:80px; }
 #portfolio .rn-portfolio .thumbnail {
     flex: none;
     aspect-ratio: 4 / 3;
-    overflow: hidden;
+    overflow: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
     border-radius: 12px;
     background: #f1f5fb;
 }
 #portfolio .rn-portfolio .thumbnail a {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 #portfolio .rn-portfolio .thumbnail img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
     object-position: center top;
 }
 #portfolio .rn-portfolio .content {
@@ -636,3 +639,7 @@ html { scroll-padding-top:80px; }
     margin: 0 0 8px;
 }
 #portfolio .rn-portfolio .project-details-link { flex-shrink: 0; }
+
+/* Keep the full screenshot scrollable instead of zooming or cropping it. */
+#portfolio .rn-portfolio:hover .thumbnail,
+#portfolio .rn-portfolio:hover .thumbnail img { transform: none; }
