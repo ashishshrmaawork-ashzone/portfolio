@@ -1,5 +1,3 @@
-import { PortfolioHome } from "@/components/portfolio-home";
-
-export default function HomePage() {
-  return <PortfolioHome />;
-}
+import { redirect } from "next/navigation";
+// The beforeFiles rewrite serves the original HTML at /. This is a fallback.
+export default function HomePage() { redirect("/index.html"); }

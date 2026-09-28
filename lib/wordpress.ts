@@ -3,22 +3,6 @@ const apiUrl = (process.env.WORDPRESS_API_URL?.trim() || defaultApiUrl).replace(
 const customApiUrl = apiUrl.endsWith("/custom/v1")
   ? apiUrl
   : `${apiUrl}/custom/v1`;
-const wordpressRootUrl = apiUrl.endsWith("/custom/v1")
-  ? apiUrl.slice(0, -"/custom/v1".length)
-  : apiUrl;
-
-export type SiteSettings = Record<string, string>;
-
-export interface BlogPost {
-  id: number;
-  slug: string;
-  title: string;
-  content: string;
-  excerpt: string;
-  category: string;
-  featured_image: string;
-  date: string;
-}
 
 export interface PortfolioProject {
   id: number;
@@ -64,20 +48,6 @@ interface PortfolioPage {
   data: PortfolioProject[];
 }
 
-interface WordPressPost {
-  id: number;
-  slug: string;
-  status: string;
-  date: string;
-  title?: { rendered?: unknown };
-  content?: { rendered?: unknown };
-  excerpt?: { rendered?: unknown };
-  _embedded?: {
-    "wp:featuredmedia"?: Array<{ source_url?: unknown }>;
-    "wp:term"?: Array<Array<{ taxonomy?: unknown; name?: unknown }>>;
-  };
-}
-
 async function requestJson<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${customApiUrl}${path}`, {
     ...init,
@@ -86,7 +56,7 @@ async function requestJson<T>(path: string, init?: RequestInit): Promise<T> {
       Accept: "application/json",
       ...init?.headers,
     },
-    next: init?.next ?? { revalidate: 300 },
+    next: { revalidate: 300 },
   });
 
   if (!response.ok) {
@@ -102,85 +72,6 @@ function assertArray<T>(data: unknown, endpoint: string): T[] {
   }
 
   return data as T[];
-}
-
-function isStringRecord(data: unknown): data is SiteSettings {
-  return (
-    !!data &&
-    typeof data === "object" &&
-    !Array.isArray(data) &&
-    Object.values(data).every((value) => typeof value === "string")
-  );
-}
-
-export async function getSiteSettings(): Promise<SiteSettings> {
-  const data: unknown = await requestJson("/site-settings", {
-    next: { revalidate: 60 },
-  });
-  if (!isStringRecord(data)) {
-    throw new Error("WordPress API returned invalid site settings.");
-  }
-
-  return data;
-}
-
-export async function getBlogPosts(): Promise<BlogPost[]> {
-  async function requestPage(page: number) {
-    const response = await fetch(
-      `${wordpressRootUrl}/wp/v2/posts?per_page=100&_embed=1&page=${page}`,
-      {
-      signal: AbortSignal.timeout(10000),
-      headers: { Accept: "application/json" },
-      next: { revalidate: 60 },
-      },
-    );
-
-    if (!response.ok) {
-      throw new Error(`WordPress API request failed (${response.status}): posts?page=${page}`);
-    }
-    return {
-      posts: assertArray<WordPressPost>(await response.json(), "posts"),
-      totalPages: Number(response.headers.get("X-WP-TotalPages") || "1"),
-    };
-  }
-
-  const firstPage = await requestPage(1);
-  if (!Number.isInteger(firstPage.totalPages) || firstPage.totalPages < 1) {
-    throw new Error("WordPress API returned an invalid posts page count.");
-  }
-  const laterPages = await Promise.all(
-    Array.from({ length: firstPage.totalPages - 1 }, (_, index) =>
-      requestPage(index + 2),
-    ),
-  );
-  const posts = [firstPage.posts, ...laterPages.map((page) => page.posts)].flat();
-
-  return posts
-    .filter(
-      (post) =>
-        post.status === "publish" &&
-        post.slug !== "hello-world" &&
-        typeof post.slug === "string",
-    )
-    .map((post) => {
-      const terms = post._embedded?.["wp:term"]?.flat() ?? [];
-      const category = terms.find((term) => term.taxonomy === "category");
-      const media = post._embedded?.["wp:featuredmedia"]?.[0];
-
-      return {
-        id: post.id,
-        slug: post.slug,
-        title: typeof post.title?.rendered === "string" ? post.title.rendered : "",
-        content:
-          typeof post.content?.rendered === "string" ? post.content.rendered : "",
-        excerpt:
-          typeof post.excerpt?.rendered === "string" ? post.excerpt.rendered : "",
-        category: typeof category?.name === "string" ? category.name : "Articles",
-        featured_image:
-          typeof media?.source_url === "string" ? media.source_url : "",
-        date: typeof post.date === "string" ? post.date : "",
-      };
-    });
 }
 
 export async function getServices(): Promise<Service[]> {
@@ -287,10 +178,9 @@ export async function submitContactMessage(
     phone: string;
     subject: string;
     message: string;
-    type: "contact" | "quote";
   },
 ): Promise<Response> {
-  return fetch(`${customApiUrl}/messages`, {
+  return fetch(`${customApiUrl}/contact`, {
     method: "POST",
     signal: AbortSignal.timeout(15000),
     headers: { "Content-Type": "application/json", Accept: "application/json" },

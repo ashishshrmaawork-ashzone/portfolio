@@ -1,16 +1,6 @@
 import { NextResponse } from "next/server";
-import {
-  getBlogPosts,
-  getEducation,
-  getProjects,
-  getServices,
-  getSiteSettings,
-  getTestimonials,
-  getWorkExperience,
-} from "@/lib/wordpress";
+import { getEducation, getProjects, getServices, getTestimonials, getWorkExperience } from "@/lib/wordpress";
 const collections = {
-  "site-settings": getSiteSettings,
-  blog: getBlogPosts,
   services: getServices, projects: getProjects, workexperience: getWorkExperience,
   education: getEducation, testimonials: getTestimonials,
 };
@@ -22,12 +12,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ col
   try {
     const data = await collections[collection as keyof typeof collections]();
     return NextResponse.json(data, {
-      headers: {
-        "Cache-Control":
-          collection === "site-settings" || collection === "blog"
-            ? "public, s-maxage=60, stale-while-revalidate=120"
-            : "public, s-maxage=300, stale-while-revalidate=600",
-      },
+      headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" },
     });
   } catch (error) {
     console.error("Portfolio collection failed:", collection, error);
