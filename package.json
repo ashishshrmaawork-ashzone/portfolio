@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
-    "predev": "node scripts/prepare-site.mjs",
-    "prebuild": "node scripts/prepare-site.mjs"
+    "lint": "eslint ."
   },
   "dependencies": {
     "next": "^16.2.7",

@@ -31,8 +31,10 @@ export async function POST(request: Request) {
   const email = payload["contact-email"].trim();
   const subject = payload.subject.trim();
   const message = payload["contact-message"].trim();
+  const phone = payload["contact-phone"].trim();
+  const type = "type" in payload && payload.type === "quote" ? "quote" : "contact";
 
-  if (!name || !email || !message || name.length > 200 || email.length > 320 || subject.length > 200 || message.length > 10_000) {
+  if (!name || !email || !message || name.length > 200 || email.length > 320 || phone.length > 80 || subject.length > 200 || message.length > 10_000) {
     return NextResponse.json({ message: "Please check the contact details and try again." }, { status: 400 });
   }
 
@@ -44,10 +46,11 @@ export async function POST(request: Request) {
   try {
     response = await submitContactMessage({
       name,
-      phone: payload["contact-phone"].trim(),
+      phone,
       email,
       subject,
       message,
+      type,
     });
   } catch (error) {
     console.error("WordPress contact request failed.", error);
