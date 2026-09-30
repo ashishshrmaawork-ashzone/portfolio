@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { plainText, type PortfolioProject } from "@/lib/wordpress";
 
-function getProjectUrl(url: string): string | null {
+function getSafeUrl(url: string): string | null {
   try {
     const parsedUrl = new URL(url);
     return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:"
@@ -18,7 +18,13 @@ function getProjectUrl(url: string): string | null {
 export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const selectedProjectUrl = selectedProject ? getProjectUrl(selectedProject.url) : null;
+  const selectedProjectUrl = selectedProject ? getSafeUrl(selectedProject.url) : null;
+  const selectedProjectPoster = selectedProject
+    ? getSafeUrl(selectedProject.poster_image)
+    : null;
+  const selectedProjectThumbnail = selectedProject
+    ? getSafeUrl(selectedProject.thumbnail_image)
+    : null;
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -32,7 +38,9 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
       <div className="project-gallery">
         {projects.map((project) => {
           const title = plainText(project.title);
-          const image = project.thumbnail_image || project.poster_image;
+          const thumbnail = getSafeUrl(project.thumbnail_image);
+          const poster = getSafeUrl(project.poster_image);
+          const image = thumbnail || poster;
 
           return (
             <article className="project-gallery-card" key={project.id}>
@@ -63,9 +71,6 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
                 >
                   View full page
                 </button>
-                <Link href={`/projects/${encodeURIComponent(project.slug)}`}>
-                  Project details
-                </Link>
               </div>
             </article>
           );
@@ -100,6 +105,9 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
                     Visit live site <span aria-hidden="true">↗</span>
                   </a>
                 )}
+                <Link href={`/projects/${encodeURIComponent(selectedProject.slug)}`}>
+                  Project details
+                </Link>
                 <button
                   type="button"
                   onClick={() => dialogRef.current?.close()}
@@ -110,9 +118,9 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
               </div>
             </div>
             <div className="project-preview-content">
-              {(selectedProject.poster_image || selectedProject.thumbnail_image) ? (
+              {(selectedProjectPoster || selectedProjectThumbnail) ? (
                 <img
-                  src={selectedProject.poster_image || selectedProject.thumbnail_image}
+                  src={selectedProjectPoster || selectedProjectThumbnail || ""}
                   alt={`${plainText(selectedProject.title)} full-page preview`}
                 />
               ) : (

@@ -2,7 +2,7 @@
     const page = location.pathname.split('/').pop();
     const home = !page || page === 'index.html';
     const blog = page === 'blog.html' || page === 'blog-detail.html';
-    const href = id => id === 'blog' ? 'blog.html' : id === 'portfolio' && !home ? 'portfolio.html' : (home ? '' : 'index.html') + '#' + id;
+    const href = id => id === 'portfolio' ? '/portfolios' : id === 'blog' ? 'blog.html' : (home ? '' : 'index.html') + '#' + id;
     const links = [['home','Home'],['features','Features'],['portfolio','Portfolio'],['resume','Resume'],['blog','Blog'],['contacts','Contact']];
     const quote = home ? 'href="#quoteModal" data-bs-toggle="modal" data-bs-target="#quoteModal"' : 'href="index.html?quote=1#home"';
     const navigation = links.map(([id,label]) => `<a href="${href(id)}" ${(blog && id === 'blog') || (['project-details.html', 'portfolio.html'].includes(page) && id === 'portfolio') ? 'aria-current="page"' : ''}>${label}</a>`).join('');

@@ -9,7 +9,7 @@ const links = [
   ["#home", "Home", "nav_home"],
   ["#about", "About", "nav_about"],
   ["#features", "Services", "nav_services"],
-  ["#portfolio", "Portfolio", "nav_portfolio"],
+  ["/projects", "Portfolio", "nav_portfolio"],
   ["#resume", "Resume", "nav_resume"],
   ["/blog", "Blog", "nav_blog"],
   ["#contacts", "Contact", "nav_contact"],

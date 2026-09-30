@@ -1,7 +1,21 @@
+.portfolio-page {
+  min-height: 70vh;
+  background: #fff;
+}
+
+.portfolio-accent-band {
+  height: 34px;
+  background: linear-gradient(100deg, #e4002b 0 24%, #a41025 24% 100%);
+}
+
+.portfolio-gallery-section {
+  padding: 34px 24px 64px;
+}
+
 .project-gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  max-width: 1040px;
+  max-width: 812px;
   margin-inline: auto;
   overflow: hidden;
   background: #111;
@@ -10,7 +24,7 @@
 .project-gallery-card {
   position: relative;
   isolation: isolate;
-  aspect-ratio: 1;
+  aspect-ratio: 0.96;
   overflow: hidden;
   background: #242424;
   color: #fff;
@@ -78,14 +92,6 @@
   line-height: 1.25;
 }
 
-.project-gallery-category {
-  color: rgb(255 255 255 / 78%);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .project-gallery-actions {
   position: absolute;
   inset: 0;
@@ -121,11 +127,6 @@
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-}
-
-.project-gallery-actions a {
-  border-color: rgb(255 255 255 / 65%);
-  background: rgb(0 0 0 / 38%);
 }
 
 .project-gallery-actions button:hover,
@@ -222,21 +223,22 @@
 
 @media (max-width: 900px) {
   .project-gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 720px;
   }
 }
 
 @media (max-width: 620px) {
+  .portfolio-gallery-section {
+    padding: 24px 16px 44px;
+  }
+
   .project-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 480px;
   }
 
   .project-gallery-caption {
     padding: 10px;
-  }
-
-  .project-gallery-category {
-    font-size: 8px;
   }
 
   .project-gallery-actions button,
@@ -257,6 +259,15 @@
 
   .project-preview-toolbar-actions {
     gap: 10px;
+  }
+}
+
+@media (hover: none) {
+  .project-gallery-actions {
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 12px;
+    opacity: 1;
   }
 }
 
