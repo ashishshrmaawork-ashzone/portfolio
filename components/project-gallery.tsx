@@ -41,11 +41,11 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
               <div className="project-gallery-shade" />
               <div className="project-gallery-caption">
                 <h2>{title}</h2>
-              </div>
-              <div className="project-gallery-actions">
-                <a href={details} aria-label={`View project ${title}`}>
-                  View project
-                </a>
+                <div className="project-gallery-actions">
+                  <a href={details} aria-label={`View project ${title}`}>
+                    View project
+                  </a>
+                </div>
               </div>
             </article>
           );

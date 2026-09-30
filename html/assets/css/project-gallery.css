@@ -146,7 +146,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 9px;
   padding: 18px;
   opacity: 0;
   pointer-events: none;
@@ -160,16 +160,14 @@
 }
 
 .project-gallery-actions {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 18px;
+  position: static;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-inline: 12px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 200ms ease, transform 200ms ease;
+  padding: 0;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
 }
 
 .project-gallery-card:hover .project-gallery-actions,
@@ -525,9 +523,12 @@
 @media (hover: none) {
   .project-gallery-actions {
     align-items: center;
-    bottom: 12px;
     opacity: 1;
     transform: none;
+  }
+
+  .project-gallery-caption {
+    opacity: 1;
   }
 }
 

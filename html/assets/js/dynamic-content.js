@@ -86,7 +86,6 @@
         const title = document.createElement('h2');
         title.textContent = plain(item.title);
         caption.append(title);
-        card.append(caption);
 
         const actions = document.createElement('div');
         actions.className = 'project-gallery-actions';
@@ -95,7 +94,8 @@
         details.textContent = 'View project';
         details.setAttribute('aria-label', 'View project ' + plain(item.title));
         actions.append(details);
-        card.append(actions);
+        caption.append(actions);
+        card.append(caption);
         return card;
     }
 
