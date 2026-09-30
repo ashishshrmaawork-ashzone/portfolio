@@ -79,7 +79,10 @@ export default async function ProjectPage({
                 <img src={image} alt={`${plainText(project.title)} full-page website preview`} />
               </div>
             </div>
-            <div className="laptop-base" aria-hidden="true" />
+            <div className="laptop-base" aria-hidden="true">
+              <div className="laptop-keyboard" />
+              <div className="laptop-trackpad" />
+            </div>
             <figcaption>
               <span>{plainText(project.category)}</span>
               <span>Scroll inside the laptop screen to view the full page</span>

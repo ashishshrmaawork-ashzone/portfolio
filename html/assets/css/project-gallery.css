@@ -321,10 +321,10 @@
 }
 
 .portfolio-detail-page .project-preview {
-  padding: 18px 18px 14px;
-  border: 1px solid #d9e5f5;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #e8f0fc, #dce8fa);
+  padding: 18px 0 14px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .portfolio-detail-page .laptop-lid {
@@ -404,40 +404,46 @@
   position: relative;
   z-index: 1;
   width: 108%;
-  height: 36px;
+  height: 66px;
   margin: -1px 0 0 -4%;
-  border: 1px solid #909bad;
+  overflow: hidden;
+  border: 1px solid #7e8999;
   border-radius: 0 0 48% 48% / 0 0 38% 38%;
-  background: linear-gradient(180deg, #dce3ed 0%, #aeb9c8 28%, #778497 78%, #aab4c2 100%);
+  background: linear-gradient(180deg, #dce3ed 0%, #c2ccd9 10%, #8f9bac 74%, #687587 100%);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 88%),
     0 14px 18px rgb(16 41 82 / 18%);
   clip-path: polygon(1% 0, 99% 0, 100% 48%, 96% 84%, 90% 100%, 10% 100%, 4% 84%, 0 48%);
 }
 
-.portfolio-detail-page .laptop-base::before {
+.portfolio-detail-page .laptop-keyboard {
   position: absolute;
-  top: 0;
-  left: 2%;
-  width: 96%;
-  height: 3px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, #7c899a, #f7f9fc 18%, #f7f9fc 82%, #7c899a);
-  content: "";
+  top: 7px;
+  left: 18%;
+  width: 64%;
+  height: 27px;
+  border: 2px solid #818d9e;
+  border-radius: 4px;
+  background-color: #222d3c;
+  background-image:
+    linear-gradient(rgb(170 184 201 / 48%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(170 184 201 / 48%) 1px, transparent 1px);
+  background-size: 100% 7px, 8px 100%;
+  box-shadow:
+    inset 0 1px 2px rgb(0 0 0 / 60%),
+    0 1px 0 rgb(255 255 255 / 55%);
 }
 
-.portfolio-detail-page .laptop-base::after {
+.portfolio-detail-page .laptop-trackpad {
   position: absolute;
-  top: 2px;
-  left: 40%;
-  width: 20%;
-  height: 9px;
-  border: 1px solid #8995a5;
-  border-top: 0;
+  top: 40px;
+  left: 37%;
+  width: 26%;
+  height: 17px;
+  border: 1px solid #788597;
   border-radius: 0 0 9px 9px;
-  background: linear-gradient(180deg, #aeb9c8, #c3ccd7);
-  box-shadow: inset 0 -1px 1px rgb(255 255 255 / 60%);
-  content: "";
+  background: linear-gradient(180deg, rgb(121 135 153 / 45%), rgb(222 228 236 / 70%));
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / 70%);
 }
 
 .portfolio-detail-page .laptop-preview figcaption {
@@ -452,7 +458,7 @@
 
 @media (max-width: 767px) {
   .portfolio-detail-page .project-preview {
-    padding: 12px 12px 10px;
+    padding: 12px 0 10px;
   }
 
   .portfolio-detail-page .laptop-lid {
@@ -471,9 +477,20 @@
   }
 
   .portfolio-detail-page .laptop-base {
-    height: 24px;
+    height: 52px;
     width: 106%;
     margin-left: -3%;
+  }
+
+  .portfolio-detail-page .laptop-keyboard {
+    top: 5px;
+    height: 21px;
+    background-size: 100% 6px, 7px 100%;
+  }
+
+  .portfolio-detail-page .laptop-trackpad {
+    top: 32px;
+    height: 13px;
   }
 
   .portfolio-detail-page .laptop-preview figcaption {
