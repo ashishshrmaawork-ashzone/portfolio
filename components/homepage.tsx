@@ -2034,6 +2034,7 @@ function ContactSection() {
 
 function HomepageDecorations() {
   return (
+    <>
 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-hidden="true">
       {" "}
       <div className="modal-dialog modal-dialog-centered" role="document">
@@ -2310,6 +2311,7 @@ function HomepageDecorations() {
       </a>
       {" "}
     </div>
+    </>
   );
 }
 
