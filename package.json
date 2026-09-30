@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "predev": "node scripts/prepare-site.mjs",
-    "prebuild": "node scripts/prepare-site.mjs"
+    "test": "node tests/contact-route.mjs"
   },
   "dependencies": {
     "next": "^16.2.7",
