@@ -58,7 +58,27 @@ try {
   const apiPosts = await wordpress.getBlogPosts();
   assert.deepEqual(apiProjects.map((project) => project.slug), ["api-only"]);
   assert.deepEqual(apiPosts.map((post) => post.slug), ["api-article"]);
-  console.log("PASS API-first content with saved-data fallback");
+
+  const resumeRequests = [];
+  globalThis.fetch = async (input, init) => {
+    const url = String(input);
+    resumeRequests.push({ url, revalidate: init?.next?.revalidate });
+    const education = url.endsWith("/education");
+    return Response.json([{
+      id: education ? 2001 : 2002,
+      title: education ? "Current education" : "Current experience",
+      experience: "Current period",
+      content: "Latest content from WordPress",
+    }]);
+  };
+
+  const workExperience = await wordpress.getWorkExperience();
+  const education = await wordpress.getEducation();
+  assert.equal(workExperience[0].content, "Latest content from WordPress");
+  assert.equal(education[0].content, "Latest content from WordPress");
+  assert.equal(resumeRequests.length, 2);
+  assert.ok(resumeRequests.every((request) => request.revalidate === 0));
+  console.log("PASS API-first content, saved-data fallback, and fresh resume API data");
 } finally {
   globalThis.fetch = originalFetch;
   console.error = originalError;

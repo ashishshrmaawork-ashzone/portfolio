@@ -221,12 +221,16 @@ export async function getServices(): Promise<Service[]> {
 }
 
 export async function getWorkExperience(): Promise<ResumeEntry[]> {
-  const data: unknown = await requestJson("/workexperience");
+  const data: unknown = await requestJson("/workexperience", {
+    next: { revalidate: 0 },
+  });
   return assertArray<ResumeEntry>(data, "workexperience");
 }
 
 export async function getEducation(): Promise<ResumeEntry[]> {
-  const data: unknown = await requestJson("/education");
+  const data: unknown = await requestJson("/education", {
+    next: { revalidate: 0 },
+  });
   return assertArray<ResumeEntry>(data, "education");
 }
 

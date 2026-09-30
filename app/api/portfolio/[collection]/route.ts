@@ -22,7 +22,9 @@ export async function GET(_request: Request, { params }: { params: Promise<{ col
     return NextResponse.json(data, {
       headers: {
         "Cache-Control":
-          collection === "blog"
+          collection === "workexperience" || collection === "education"
+            ? "no-store"
+            : collection === "blog"
             ? "public, s-maxage=60, stale-while-revalidate=120"
             : "public, s-maxage=300, stale-while-revalidate=600",
       },

@@ -3,7 +3,7 @@
     const wordpress = 'https://reactapp.kgkrealty.com/ashportfolio/wp-json/custom/v1';
     const names = { projects: 'portfolio-page' };
     async function request(url) {
-        const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
+        const response = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(15000) });
         if (!response.ok) throw new Error('Content request failed (' + response.status + ')');
         return response.json();
     }
