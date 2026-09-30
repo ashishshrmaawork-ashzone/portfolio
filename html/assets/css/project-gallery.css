@@ -321,14 +321,122 @@
 }
 
 .portfolio-detail-page .project-preview {
-  padding: 18px;
+  padding: 18px 18px 14px;
   border: 1px solid #d9e5f5;
   border-radius: 18px;
   background: linear-gradient(135deg, #e8f0fc, #dce8fa);
 }
 
-.portfolio-detail-page .project-preview img {
-  border-radius: 12px;
+.portfolio-detail-page .laptop-lid {
+  padding: 11px 11px 0;
+  border: 1px solid #364256;
+  border-bottom: 0;
+  border-radius: 14px 14px 5px 5px;
+  background: linear-gradient(145deg, #202b3c, #0d1420);
+  box-shadow: 0 12px 24px rgb(16 41 82 / 14%);
+}
+
+.portfolio-detail-page .laptop-screen {
+  height: clamp(300px, 42vw, 500px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #8298b8 #e4ebf5;
+  scrollbar-width: thin;
+  border-radius: 5px 5px 0 0;
+  background: #fff;
+  scroll-behavior: smooth;
+}
+
+.portfolio-detail-page .laptop-screen:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: -3px;
+}
+
+.portfolio-detail-page .laptop-screen img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  object-fit: initial;
+  border-radius: 0;
+  background: #fff;
+}
+
+.portfolio-detail-page .laptop-screen::-webkit-scrollbar {
+  width: 10px;
+}
+
+.portfolio-detail-page .laptop-screen::-webkit-scrollbar-track {
+  background: #e4ebf5;
+}
+
+.portfolio-detail-page .laptop-screen::-webkit-scrollbar-thumb {
+  border: 2px solid #e4ebf5;
+  border-radius: 10px;
+  background: #8298b8;
+}
+
+.portfolio-detail-page .laptop-base {
+  position: relative;
+  width: 108%;
+  height: 13px;
+  margin-left: -4%;
+  border: 1px solid #b4c1d2;
+  border-radius: 0 0 48% 48%;
+  background: linear-gradient(#c8d2df, #8997a9);
+  box-shadow: 0 8px 11px rgb(16 41 82 / 13%);
+}
+
+.portfolio-detail-page .laptop-base::after {
+  position: absolute;
+  top: 0;
+  left: 42%;
+  width: 16%;
+  height: 4px;
+  border-radius: 0 0 6px 6px;
+  background: #7c899a;
+  content: "";
+}
+
+.portfolio-detail-page .laptop-preview figcaption {
+  align-items: center;
+  padding: 18px 3px 0;
+}
+
+.portfolio-detail-page .laptop-preview figcaption span:nth-child(2) {
+  flex: 1;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .portfolio-detail-page .project-preview {
+    padding: 12px 12px 10px;
+  }
+
+  .portfolio-detail-page .laptop-lid {
+    padding: 7px 7px 0;
+  }
+
+  .portfolio-detail-page .laptop-screen {
+    height: min(62vh, 420px);
+  }
+
+  .portfolio-detail-page .laptop-base {
+    height: 10px;
+  }
+
+  .portfolio-detail-page .laptop-preview figcaption {
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 10px;
+  }
+
+  .portfolio-detail-page .laptop-preview figcaption span:nth-child(2) {
+    flex-basis: 100%;
+    order: 1;
+  }
 }
 
 .portfolio-detail-page .project-overview {

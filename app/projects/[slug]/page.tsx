@@ -68,9 +68,23 @@ export default async function ProjectPage({
           <span className="project-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
         </section>
         {image && (
-          <figure className="project-preview">
-            <img src={image} alt={`${plainText(project.title)} project preview`} />
-            <figcaption><span>{plainText(project.category)}</span><span>{plainText(project.date)}</span></figcaption>
+          <figure className="project-preview laptop-preview">
+            <div className="laptop-lid">
+              <div
+                className="laptop-screen"
+                role="region"
+                aria-label={`${plainText(project.title)} website preview. Scroll inside the screen to view the full page.`}
+                tabIndex={0}
+              >
+                <img src={image} alt={`${plainText(project.title)} full-page website preview`} />
+              </div>
+            </div>
+            <div className="laptop-base" aria-hidden="true" />
+            <figcaption>
+              <span>{plainText(project.category)}</span>
+              <span>Scroll inside the laptop screen to view the full page</span>
+              <span>{plainText(project.date)}</span>
+            </figcaption>
           </figure>
         )}
         <section className="project-overview">
