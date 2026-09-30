@@ -3,6 +3,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjects, plainText } from "@/lib/wordpress";
 
+function safeHttpUrl(value: string): string | null {
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "http:" || parsed.protocol === "https:"
+      ? parsed.href
+      : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -31,16 +42,24 @@ export default async function ProjectPage({
   const project = projects[index];
   const previous = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
-  const image = project.poster_image || project.thumbnail_image;
+  const image = safeHttpUrl(project.poster_image) || safeHttpUrl(project.thumbnail_image);
+  const projectUrl = safeHttpUrl(project.url);
 
   return (
-    <main className="project-main">
-      <div className="shell">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link><span aria-hidden="true">/</span>
-          <Link href="/projects">Portfolio</Link><span aria-hidden="true">/</span>
-          <span aria-current="page">{plainText(project.title)}</span>
-        </nav>
+    <main className="project-main portfolio-detail-page">
+      <div className="portfolio-accent-band" aria-hidden="true" />
+      <section className="portfolio-breadcrumb-band">
+        <div className="portfolio-breadcrumb-shell">
+          <nav className="portfolio-breadcrumbs" aria-label="Breadcrumb">
+            <Link href="/">Home</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/projects">Portfolio</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{plainText(project.title)}</span>
+          </nav>
+        </div>
+      </section>
+      <div className="shell portfolio-detail-shell">
         <section className="project-intro">
           <div>
             <span className="eyebrow">{plainText(project.category || "Web development")}</span>
@@ -67,7 +86,7 @@ export default async function ProjectPage({
               {project.tech && <div><dt>Technologies</dt><dd>{plainText(project.tech)}</dd></div>}
               {project.date && <div><dt>Completed</dt><dd>{plainText(project.date)}</dd></div>}
             </dl>
-            {project.url && <a className="text-link" href={project.url} target="_blank" rel="noreferrer">Visit live project ↗</a>}
+            {projectUrl && <a className="text-link" href={projectUrl} target="_blank" rel="noreferrer">Visit live project ↗</a>}
           </aside>
         </section>
         <section className="project-cta">
