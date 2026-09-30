@@ -90,11 +90,17 @@
 
         const actions = document.createElement('div');
         actions.className = 'project-gallery-actions';
-        const link = document.createElement('a');
-        link.href = 'project-details.html?project=' + encodeURIComponent(item.slug);
-        link.textContent = 'View full page';
-        link.setAttribute('aria-label', 'View full page: ' + plain(item.title));
-        actions.append(link);
+        const preview = document.createElement('button');
+        preview.type = 'button';
+        preview.className = 'js-project-preview';
+        preview.dataset.previewImage = url(item.poster_image) || imageSource;
+        preview.dataset.projectTitle = plain(item.title);
+        preview.dataset.projectCategory = plain(item.category || 'Web development');
+        preview.dataset.projectUrl = url(item.url);
+        preview.dataset.projectDetails = 'project-details.html?project=' + encodeURIComponent(item.slug);
+        preview.textContent = 'View full page';
+        preview.setAttribute('aria-label', 'Preview ' + plain(item.title));
+        actions.append(preview);
         card.append(actions);
         return card;
     }

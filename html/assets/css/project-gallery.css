@@ -216,6 +216,10 @@
   cursor: pointer;
 }
 
+.project-preview-toolbar-actions [hidden] {
+  display: none;
+}
+
 .project-preview-content {
   max-height: calc(min(90dvh, 900px) - 68px);
   overflow: auto;
@@ -257,6 +261,19 @@
   .project-gallery-actions a {
     padding: 8px 12px;
     font-size: 11px;
+  }
+
+  .project-preview-toolbar {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .project-preview-toolbar h2 {
+    font-size: 14px;
+  }
+
+  .project-preview-toolbar-actions {
+    gap: 10px;
   }
 
   .project-preview-toolbar {
