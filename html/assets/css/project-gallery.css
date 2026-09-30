@@ -66,18 +66,18 @@
 
 .project-gallery-shade {
   z-index: -1;
-  background: rgb(16 41 82 / 62%);
+  background: rgb(16 41 82 / 34%);
   transition: background-color 250ms ease;
 }
 
 .project-gallery-card:hover .project-gallery-image,
 .project-gallery-card:focus-within .project-gallery-image {
-  transform: scale(1.045);
+  transform: scale(1.025);
 }
 
 .project-gallery-card:hover .project-gallery-shade,
 .project-gallery-card:focus-within .project-gallery-shade {
-  background: rgb(16 41 82 / 84%);
+  background: rgb(16 41 82 / 70%);
 }
 
 .project-gallery-caption {
@@ -90,42 +90,45 @@
   gap: 7px;
   padding: 18px;
   text-align: center;
-  transition: transform 250ms ease, opacity 250ms ease;
-}
-
-.project-gallery-caption h2 {
-  margin: 0;
-  color: #fff;
-  font-size: clamp(15px, 1.7vw, 22px);
-  font-weight: 600;
-  line-height: 1.25;
+  transition: opacity 250ms ease;
 }
 
 .project-gallery-actions {
   position: absolute;
-  inset: 0;
+  inset-inline: 0;
+  bottom: 18px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  padding-inline: 12px;
   opacity: 0;
-  transition: opacity 250ms ease;
+  transform: translateY(8px);
+  transition: opacity 200ms ease, transform 200ms ease;
 }
 
 .project-gallery-card:hover .project-gallery-actions,
 .project-gallery-card:focus-within .project-gallery-actions {
   opacity: 1;
+  transform: translateY(0);
 }
 
-.project-gallery-card:hover .project-gallery-caption,
-.project-gallery-card:focus-within .project-gallery-caption {
-  transform: translateY(-26px);
+.project-gallery-caption h2 {
+  max-width: 100%;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(15px, 1.7vw, 22px);
+  font-weight: 600;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 12px rgb(16 41 82 / 35%);
 }
 
 .project-gallery-actions button,
 .project-gallery-actions a {
-  min-width: 132px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
   padding: 10px 16px;
   border: 1px solid #2563eb;
   border-radius: 999px;
@@ -133,6 +136,7 @@
   color: #fff;
   font: inherit;
   font-size: 12px;
+  font-weight: 600;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -251,7 +255,6 @@
 
   .project-gallery-actions button,
   .project-gallery-actions a {
-    min-width: 110px;
     padding: 8px 12px;
     font-size: 11px;
   }
@@ -273,9 +276,9 @@
 @media (hover: none) {
   .project-gallery-actions {
     align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 12px;
+    bottom: 12px;
     opacity: 1;
+    transform: none;
   }
 }
 
