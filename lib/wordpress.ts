@@ -331,11 +331,12 @@ export async function submitContactMessage(
     type: "contact" | "quote";
   },
 ): Promise<Response> {
-  return fetch(`${customApiUrl}/messages`, {
+  const { name, email, phone, subject, message } = payload;
+  return fetch(`${customApiUrl}/contact`, {
     method: "POST",
     signal: AbortSignal.timeout(15000),
     headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ name, email, phone, subject, message }),
     cache: "no-store",
   });
 }
