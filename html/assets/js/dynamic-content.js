@@ -116,7 +116,7 @@
     const projects = document.querySelector('#portfolio .row.row--25');
     if (projects) {
         projects.className = 'project-gallery';
-        tasks.push(populate('projects', projects, items => items.slice(0, 6).forEach(item => {
+        tasks.push(populate('projects', projects, items => items.slice(0, 8).forEach(item => {
             projects.append(renderProjectCard(item));
         })));
     }
