@@ -56,6 +56,7 @@ assert.doesNotMatch(contentScript, /localPreview/);
 
 const config = await readFile(new URL("../next.config.ts", import.meta.url), "utf8");
 assert.doesNotMatch(config, /rewrites\s*\(/, "homepage is no longer served by a static rewrite");
+assert.match(config, /source: "\/terms-of-use", destination: "\/terms-and-conditions", permanent: true/);
 assert.match(config, /X-Robots-Tag/);
 const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
 assert.match(layout, /url: "\/favicon\.ico"/);
