@@ -1959,7 +1959,7 @@ function ContactSection() {
                         {"Your Message"}
                       </label>
                       {" "}
-                      <textarea name="contact-message" id="contact-message" cols="30" rows="3" placeholder="A little about your goals and timeline..." required />
+                      <textarea name="contact-message" id="contact-message" cols={30} rows={3} placeholder="A little about your goals and timeline..." required />
                       {" "}
                     </div>
                     {" "}
@@ -1983,7 +1983,7 @@ function ContactSection() {
                           {"="}
                         </span>
                         {" "}
-                        <input className="form-control" id="contact-captcha" name="contact-captcha" type="text" inputMode="numeric" maxLength="4" placeholder="Enter answer" aria-label="Enter the captcha answer" required />
+                        <input className="form-control" id="contact-captcha" name="contact-captcha" type="text" inputMode="numeric" maxLength={4} placeholder="Enter answer" aria-label="Enter the captcha answer" required />
                         {" "}
                         <button type="button" className="captcha-refresh" id="captcha-refresh" aria-label="Generate a new math captcha">
                           {"↻"}
@@ -2035,7 +2035,7 @@ function ContactSection() {
 function HomepageDecorations() {
   return (
     <>
-<div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-hidden="true">
+<div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-hidden="true">
       {" "}
       <div className="modal-dialog modal-dialog-centered" role="document">
         {" "}
@@ -2137,7 +2137,7 @@ function HomepageDecorations() {
       </div>
       {" "}
     </div>
-<div className="modal fade" id="exampleModalCenters" tabIndex="-1" role="dialog" aria-hidden="true">
+<div className="modal fade" id="exampleModalCenters" tabIndex={-1} role="dialog" aria-hidden="true">
       {" "}
       <div className="modal-dialog modal-dialog-centered modal-news" role="document">
         {" "}
@@ -2317,7 +2317,7 @@ function HomepageDecorations() {
 
 function QuoteModal() {
   return (
-<div className="modal fade" id="quoteModal" tabIndex="-1" aria-labelledby="quote-title" aria-describedby="quote-description" aria-hidden="true">
+<div className="modal fade" id="quoteModal" tabIndex={-1} aria-labelledby="quote-title" aria-describedby="quote-description" aria-hidden="true">
       {" "}
       <div className="modal-dialog modal-dialog-centered">
         {" "}
@@ -2467,7 +2467,7 @@ function QuoteModal() {
                   </span>
                 </label>
                 {" "}
-                <textarea id="quote-details" name="details" rows="3" placeholder="What would you like to build? Include any goals or timelines." required />
+                <textarea id="quote-details" name="details" rows={3} placeholder="What would you like to build? Include any goals or timelines." required />
                 {" "}
               </div>
               {" "}
@@ -2490,7 +2490,7 @@ function QuoteModal() {
                     {"="}
                   </span>
                   {" "}
-                  <input id="quote-captcha" name="quote-captcha" type="text" inputMode="numeric" pattern="[0-9]{1,2}" maxLength="2" placeholder="Answer" autoComplete="off" aria-describedby="quote-captcha-question quote-captcha-help" required />
+                  <input id="quote-captcha" name="quote-captcha" type="text" inputMode="numeric" pattern="[0-9]{1,2}" maxLength={2} placeholder="Answer" autoComplete="off" aria-describedby="quote-captcha-question quote-captcha-help" required />
                   {" "}
                   <button id="quote-captcha-refresh" type="button" aria-label="Generate a new math question">
                     {"↻"}
