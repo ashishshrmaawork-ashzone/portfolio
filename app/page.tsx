@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import "./homepage.css";
 import { Homepage } from "@/components/homepage";
 
+const websiteStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Ashish Sharma",
+  alternateName: ["Ashish Sharma Portfolio", "Ashish Sharma | Full Stack Developer"],
+  url: "https://ashishshrmaa.vercel.app/",
+};
+
 export const metadata: Metadata = {
   title: "Ashish Sharma | Full Stack Developer & Web Solutions Expert",
   description:
@@ -26,5 +34,13 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <Homepage />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+      />
+      <Homepage />
+    </>
+  );
 }

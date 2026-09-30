@@ -5,6 +5,7 @@ import { SiteChrome } from "@/components/site-chrome";
 const fallbackMetadata: Metadata = {
   metadataBase: new URL("https://ashishshrmaa.vercel.app"),
   title: "Ashish Sharma | Full Stack Developer",
+  applicationName: "Ashish Sharma",
   description:
     "Ashish Sharma builds fast, useful and modern digital products with PHP, WordPress, JavaScript, React and Next.js.",
   robots: {

@@ -9,6 +9,9 @@ const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8")
 assert.match(page, /title:\s*"Ashish Sharma \| Full Stack Developer & Web Solutions Expert"/);
 assert.match(page, /canonical:\s*"\/"/);
 assert.match(page, /openGraph:/);
+assert.match(page, /name: "Ashish Sharma"/);
+assert.match(page, /"@type": "WebSite"/);
+assert.match(page, /dangerouslySetInnerHTML=\{\{ __html: JSON\.stringify\(websiteStructuredData\) \}\}/);
 assert.match(page, /twitter:/);
 const styles = await readFile(new URL("../app/homepage.css", import.meta.url), "utf8");
 
@@ -27,7 +30,7 @@ assert.match(homepage, /<HomepageScripts\s*\/>/);
 assert.doesNotMatch(homepage, /dangerouslySetInnerHTML|homepageMarkup|String\.raw|<style\b/i);
 assert.match(page, /import "\.\/homepage\.css"/);
 assert.match(page, /<Homepage\s*\/>/);
-assert.doesNotMatch(page, /dangerouslySetInnerHTML|homepageMarkup/);
+assert.doesNotMatch(page, /homepageMarkup/);
 assert.doesNotMatch(styles, /<style\b|<\/style>/i);
 
 const scriptsComponent = await readFile(new URL("../components/homepage-scripts.tsx", import.meta.url), "utf8");
