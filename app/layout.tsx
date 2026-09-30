@@ -3,9 +3,21 @@ import "./globals.css";
 import { SiteChrome } from "@/components/site-chrome";
 
 const fallbackMetadata: Metadata = {
+  metadataBase: new URL("https://ashishshrmaa.vercel.app"),
   title: "Ashish Sharma | Full Stack Developer",
   description:
     "Ashish Sharma builds fast, useful and modern digital products with PHP, WordPress, JavaScript, React and Next.js.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: { icon: "/assets/images/favicon.svg?v=2" },
 };
 

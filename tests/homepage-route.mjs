@@ -6,6 +6,10 @@ import { fileURLToPath } from "node:url";
 const root = new URL("../", import.meta.url);
 const homepage = await readFile(new URL("../components/homepage.tsx", import.meta.url), "utf8");
 const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+assert.match(page, /title:\s*"Ashish Sharma \| Full Stack Developer & Web Solutions Expert"/);
+assert.match(page, /canonical:\s*"\/"/);
+assert.match(page, /openGraph:/);
+assert.match(page, /twitter:/);
 const styles = await readFile(new URL("../app/homepage.css", import.meta.url), "utf8");
 
 for (const id of ["home", "features", "portfolio", "resume", "testimonial", "contacts", "quoteModal"]) {
@@ -49,4 +53,12 @@ assert.doesNotMatch(contentScript, /localPreview/);
 
 const config = await readFile(new URL("../next.config.ts", import.meta.url), "utf8");
 assert.doesNotMatch(config, /rewrites\s*\(/, "homepage is no longer served by a static rewrite");
-console.log("PASS React JSX homepage, styles, forms, scripts and API-populated sections");
+assert.match(config, /X-Robots-Tag/);
+const robots = await readFile(new URL("../app/robots.ts", import.meta.url), "utf8");
+assert.match(robots, /allow:\s*"\/"/);
+assert.match(robots, /disallow:\s*\["\/api\/"\]/);
+assert.match(robots, /sitemap\.xml/);
+const sitemap = await readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8");
+assert.match(sitemap, /getProjects/);
+assert.match(sitemap, /getBlogPosts/);
+console.log("PASS React homepage, API sections, forms, and SEO metadata");

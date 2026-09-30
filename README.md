@@ -52,6 +52,14 @@ the project root and `npm run build` as the build command. Configure
 sure WordPress can send mail to the notification address. Legacy `.html`
 routes redirect to their extensionless Next.js routes.
 
+## Search engine metadata
+
+The homepage publishes a 59-character title, canonical URL, Open Graph and
+Twitter metadata, and index/follow directives. `/robots.txt` points crawlers
+to the generated `/sitemap.xml`, which includes the homepage, portfolio and
+published project, blog and article routes. Responses include an
+`X-Robots-Tag: index, follow` header.
+
 ## Validation
 
 Run `npm run lint` and `npm run build`. Avoid submitting test enquiries on the
