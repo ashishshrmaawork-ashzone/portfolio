@@ -86,6 +86,14 @@
 .project-card .blog-card-body { min-height:200px; }
 .project-main { min-height:60vh; }
 .site-menu-toggle { border:0; cursor:pointer; }
+.legal-page { min-height:70vh; background:#f7faff; }
+.legal-content { width:min(900px,calc(100% - 48px)); padding:44px 0 72px; }
+.legal-content > section { padding:0 0 28px; }
+.legal-content h2 { margin:0 0 12px; color:#173354; font-size:clamp(20px,2.5vw,25px); }
+.legal-content p,.legal-content li { color:#4e637d; font-size:15px; line-height:1.85; }
+.legal-content p { margin:0 0 12px; }
+.legal-content ul { display:grid; gap:8px; padding-left:24px; }
+.legal-content a { color:#2563eb; }
 .site-menu-toggle span { width:20px; height:2px; background:currentColor; }
 @media(max-width:991px) {
   .rn-slider-area { padding-top:46px; }
@@ -100,4 +108,5 @@
   .hero-proof { gap:18px; }
   .resume-columns { grid-template-columns:1fr; }
   .contact-about-area,.contact-form-wrapper,.quote-section { padding:20px; }
+  .legal-content { width:calc(100% - 36px); padding:30px 0 48px; }
 }
