@@ -22,7 +22,6 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
           const thumbnail = getSafeUrl(project.thumbnail_image);
           const poster = getSafeUrl(project.poster_image);
           const image = thumbnail || poster;
-          const preview = poster || thumbnail;
           const details = `/projects/${encodeURIComponent(project.slug)}`;
 
           return (
@@ -44,18 +43,9 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
                 <h2>{title}</h2>
               </div>
               <div className="project-gallery-actions">
-                <button
-                  type="button"
-                  className="js-project-preview"
-                  data-preview-image={preview ?? ""}
-                  data-project-title={title}
-                  data-project-category={plainText(project.category || "Web development")}
-                  data-project-url={getSafeUrl(project.url) ?? ""}
-                  data-project-details={details}
-                  aria-label={`Preview ${title}`}
-                >
-                  View full page
-                </button>
+                <a href={details} aria-label={`View project ${title}`}>
+                  View project
+                </a>
               </div>
             </article>
           );
