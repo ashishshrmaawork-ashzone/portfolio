@@ -60,66 +60,45 @@
         } finally { host.removeAttribute('aria-busy'); }
     }
     window.portfolioApi = { collection, plain, url };
-    function autoScrollPreview(card) {
-        const preview = card.querySelector('.thumbnail');
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        let frame = 0, previous = 0, position = 0;
-        function stop() { cancelAnimationFrame(frame); frame = 0; previous = 0; }
-        function tick(time) {
-            const max = preview.scrollHeight - preview.clientHeight;
-            if (max <= 0 || reducedMotion.matches) { stop(); return; }
-            if (previous) position += Math.min(time - previous, 50) * 0.09;
-            previous = time;
-            preview.scrollTop = Math.min(position, max);
-            if (position < max) frame = requestAnimationFrame(tick);
-            else stop();
+    function renderProjectCard(item) {
+        const card = document.createElement('article');
+        card.className = 'project-gallery-card';
+
+        const imageSource = url(item.thumbnail_image);
+        if (imageSource) {
+            const image = document.createElement('img');
+            image.className = 'project-gallery-image';
+            image.src = imageSource;
+            image.alt = '';
+            image.loading = 'lazy';
+            card.append(image);
+        } else {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'project-gallery-placeholder';
+            placeholder.setAttribute('aria-hidden', 'true');
+            placeholder.textContent = plain(item.title).slice(0, 1);
+            card.append(placeholder);
         }
-        card.addEventListener('pointerenter', event => {
-            if (event.pointerType !== 'mouse' || reducedMotion.matches) return;
-            stop(); position = preview.scrollTop;
-            frame = requestAnimationFrame(tick);
-        });
-        card.addEventListener('pointerleave', () => {
-            stop(); preview.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
-        });
-        // Manual scrolling takes over immediately, including on touch screens.
-        preview.addEventListener('wheel', stop, { passive: true });
-        preview.addEventListener('pointerdown', stop);
-        reducedMotion.addEventListener('change', stop);
-        document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+        card.insertAdjacentHTML('beforeend', '<div class="project-gallery-shade"></div>');
+
+        const caption = document.createElement('div');
+        caption.className = 'project-gallery-caption';
+        const title = document.createElement('h2');
+        title.textContent = plain(item.title);
+        caption.append(title);
+        card.append(caption);
+
+        const actions = document.createElement('div');
+        actions.className = 'project-gallery-actions';
+        const link = document.createElement('a');
+        link.href = 'project-details.html?project=' + encodeURIComponent(item.slug);
+        link.textContent = 'View full page';
+        link.setAttribute('aria-label', 'View full page: ' + plain(item.title));
+        actions.append(link);
+        card.append(actions);
+        return card;
     }
-    function renderProjectCard(item, template) {
-            const card = template.cloneNode(true);
-            const link = 'project-details.html?project=' + encodeURIComponent(item.slug);
-            const box = card.querySelector('.rn-portfolio');
-            box.removeAttribute('data-bs-toggle'); box.removeAttribute('data-bs-target');
-            card.querySelectorAll('a').forEach(a => a.href = link);
-            card.querySelector('.title a').textContent = plain(item.title);
-            card.querySelector('.category-list a').textContent = plain(item.category || 'Web development');
-            card.querySelector('.meta')?.remove();
-            const details = card.querySelector('.project-details-link');
-            if (item.tech) {
-                const technology = document.createElement('p');
-                technology.className = 'project-tech';
-                technology.textContent = plain(item.tech);
-                technology.title = technology.textContent;
-                details.before(technology);
-            }
-            const excerpt = plain(item.content).trim();
-            if (excerpt) {
-                const description = document.createElement('p');
-                description.className = 'project-excerpt';
-                description.textContent = excerpt;
-                details.before(description);
-            }
-            const image = card.querySelector('img');
-            const source = url(item.thumbnail_image);
-            if (source) { image.src = source; image.alt = plain(item.title); image.loading = 'lazy'; }
-            else image.remove();
-            card.classList.add('aos-animate');
-            autoScrollPreview(box);
-            return card;
-    }
+
     window.portfolioApi.renderProjectCard = renderProjectCard;
     const tasks = [];
     const services = document.querySelector('#features .row.row--25');
@@ -136,9 +115,9 @@
     }
     const projects = document.querySelector('#portfolio .row.row--25');
     if (projects) {
-        const template = projects.firstElementChild.cloneNode(true);
+        projects.className = 'project-gallery';
         tasks.push(populate('projects', projects, items => items.slice(0, 6).forEach(item => {
-            projects.append(renderProjectCard(item, template));
+            projects.append(renderProjectCard(item));
         })));
     }
     for (const [id, name] of [['professional', 'workexperience'], ['education', 'education']]) {

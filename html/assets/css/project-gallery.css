@@ -1,24 +1,33 @@
 .portfolio-page {
   min-height: 70vh;
-  background: #fff;
+  background: #f7faff;
 }
 
 .portfolio-accent-band {
   height: 34px;
-  background: linear-gradient(100deg, #e4002b 0 24%, #a41025 24% 100%);
+  background: linear-gradient(100deg, #2563eb 0 24%, #102952 24% 100%);
 }
 
 .portfolio-gallery-section {
   padding: 34px 24px 64px;
 }
 
+.portfolio-archive > .shell {
+  width: min(1140px, calc(100% - 48px));
+}
+
 .project-gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  max-width: 812px;
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
   overflow: hidden;
-  background: #111;
+  background: #102952;
+}
+
+#portfolio .project-gallery {
+  width: 100%;
 }
 
 .project-gallery-card {
@@ -26,7 +35,7 @@
   isolation: isolate;
   aspect-ratio: 0.96;
   overflow: hidden;
-  background: #242424;
+  background: #173354;
   color: #fff;
 }
 
@@ -57,7 +66,7 @@
 
 .project-gallery-shade {
   z-index: -1;
-  background: rgb(0 0 0 / 58%);
+  background: rgb(16 41 82 / 62%);
   transition: background-color 250ms ease;
 }
 
@@ -68,7 +77,7 @@
 
 .project-gallery-card:hover .project-gallery-shade,
 .project-gallery-card:focus-within .project-gallery-shade {
-  background: rgb(0 0 0 / 76%);
+  background: rgb(16 41 82 / 84%);
 }
 
 .project-gallery-caption {
@@ -118,9 +127,9 @@
 .project-gallery-actions a {
   min-width: 132px;
   padding: 10px 16px;
-  border: 1px solid #e4002b;
+  border: 1px solid #2563eb;
   border-radius: 999px;
-  background: #e4002b;
+  background: #2563eb;
   color: #fff;
   font: inherit;
   font-size: 12px;
@@ -143,12 +152,12 @@
   border: 0;
   border-radius: 8px;
   background: #fff;
-  color: #171717;
+  color: #173354;
   box-shadow: 0 24px 90px rgb(0 0 0 / 40%);
 }
 
 .project-preview-dialog::backdrop {
-  background: rgb(0 0 0 / 72%);
+  background: rgb(16 41 82 / 72%);
 }
 
 .project-preview-toolbar {
@@ -161,18 +170,18 @@
   justify-content: space-between;
   gap: 20px;
   padding: 12px 18px;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e0e8f3;
   background: #fff;
 }
 
 .project-preview-toolbar span {
-  color: #737373;
+  color: #62758c;
   font-size: 11px;
 }
 
 .project-preview-toolbar h2 {
   margin: 2px 0 0;
-  color: #171717;
+  color: #173354;
   font-size: 17px;
 }
 
@@ -183,7 +192,7 @@
 }
 
 .project-preview-toolbar-actions a {
-  color: #b30020;
+  color: #2563eb;
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
@@ -194,7 +203,7 @@
   width: 36px;
   height: 36px;
   place-items: center;
-  border: 1px solid #ddd;
+  border: 1px solid #dbe6f4;
   border-radius: 50%;
   background: #fff;
   color: #222;
@@ -206,7 +215,7 @@
 .project-preview-content {
   max-height: calc(min(90dvh, 900px) - 68px);
   overflow: auto;
-  background: #f2f2f2;
+  background: #f7faff;
   text-align: center;
 }
 
@@ -223,7 +232,7 @@
 
 @media (max-width: 900px) {
   .project-gallery {
-    max-width: 720px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -234,7 +243,6 @@
 
   .project-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 480px;
   }
 
   .project-gallery-caption {

@@ -24,6 +24,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="stylesheet" href="/assets/css/site-layout.css" />
         <link rel="stylesheet" href="/assets/css/project-details.css" />
         <link rel="stylesheet" href="/assets/css/blog.css" />
+        <link rel="stylesheet" href="/assets/css/project-gallery.css" />
         <link rel="stylesheet" href="/assets/css/react-portfolio.css" />
       </head>
       <body className="template-color-1 white-version">

@@ -58,9 +58,6 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
               )}
               <div className="project-gallery-shade" />
               <div className="project-gallery-caption">
-                <span className="project-gallery-category">
-                  {plainText(project.category || "Web development")}
-                </span>
                 <h2>{title}</h2>
               </div>
               <div className="project-gallery-actions">

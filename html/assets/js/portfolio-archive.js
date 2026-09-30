@@ -2,7 +2,6 @@
     const list = document.getElementById('portfolio-archive-list');
     const count = document.getElementById('project-count');
     const pagination = document.getElementById('portfolio-pagination');
-    const template = document.getElementById('portfolio-card-template').content.firstElementChild;
     const pageSize = 9;
     try {
         const projects = await window.portfolioApi.collection('projects');
@@ -15,7 +14,7 @@
         }
         const start = (page - 1) * pageSize;
         list.replaceChildren();
-        projects.slice(start, start + pageSize).forEach(project => list.append(window.portfolioApi.renderProjectCard(project, template)));
+        projects.slice(start, start + pageSize).forEach(project => list.append(window.portfolioApi.renderProjectCard(project)));
         count.textContent = projects.length ? 'Showing ' + (start + 1) + '-' + Math.min(start + pageSize, projects.length) + ' of ' + projects.length + ' projects' : 'No projects published yet.';
         document.title = 'Portfolio' + (page > 1 ? ' - Page ' + page : '') + ' | Ashish Sharma';
         if (totalPages > 1) {
