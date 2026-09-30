@@ -1,15 +1,14 @@
 # Ashish Sharma Portfolio
 
-The website is a Next.js React application. Pages use extensionless routes:
-`/`, `/projects`, `/projects/[slug]`, `/blog` and `/blog/[slug]`. WordPress
-supplies editable site content; static design assets live in `public/assets/`.
+The website is a Next.js application. Pages use extensionless routes:
+`/`, `/projects`, `/projects/[slug]`, `/blog` and `/blog/[slug]`. The homepage
+uses the existing portfolio layout, rendered by a Next.js page; styles, scripts
+and images live in `public/assets/`. WordPress supplies editable site content.
 
 ## Local development
 
 Run `npm install`, then `npm run dev` and open http://localhost:3000. The
-original site layout is served from `html/`; the `predev` and `prebuild`
-scripts copy it to the generated `public/original/` directory. The portfolio
-content API defaults to
+portfolio content API defaults to
 `https://reactapp.kgkrealty.com/ashportfolio/wp-json`; set `WORDPRESS_API_URL`
 in `.env.local` or Vercel only if that REST root changes.
 
@@ -48,7 +47,7 @@ Deploy this repository using the Next.js preset with the repository root as
 the project root and `npm run build` as the build command. Configure
 `WORDPRESS_API_URL`, install the WordPress plugin on the API site, and make
 sure WordPress can send mail to the notification address. Legacy `.html`
-routes redirect to their extensionless React routes.
+routes redirect to their extensionless Next.js routes.
 
 ## Validation
 

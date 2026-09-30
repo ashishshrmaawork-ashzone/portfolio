@@ -1,5 +1,11 @@
-import { redirect } from "next/navigation";
+import { HomepageScripts } from "@/components/homepage-scripts";
+import { homepageMarkup } from "@/components/homepage-markup";
 
 export default function HomePage() {
-  redirect("/index.html");
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: homepageMarkup }} />
+      <HomepageScripts />
+    </>
+  );
 }

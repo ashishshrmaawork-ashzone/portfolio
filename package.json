@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/prepare-site.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/prepare-site.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node tests/contact-route.mjs && node tests/contact-forwarding.mjs && node tests/content-fallback.mjs"
+    "test": "node tests/contact-route.mjs && node tests/contact-forwarding.mjs && node tests/content-fallback.mjs && node tests/homepage-route.mjs"
   },
   "dependencies": {
     "next": "^16.2.7",

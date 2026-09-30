@@ -9,4 +9,3 @@ npm-debug.log*
 
 *.tsbuildinfo
 .verify/
-public/original/

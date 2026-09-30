@@ -2,9 +2,9 @@
     const page = location.pathname.split('/').pop();
     const home = !page || page === 'index.html';
     const blog = page === 'blog.html' || page === 'blog-detail.html';
-    const href = id => id === 'portfolio' ? '/portfolios' : id === 'blog' ? 'blog.html' : (home ? '' : 'index.html') + '#' + id;
+    const href = id => id === 'portfolio' ? '/projects' : id === 'blog' ? '/blog' : (home ? '/' : '/') + '#' + id;
     const links = [['home','Home'],['features','Features'],['portfolio','Portfolio'],['resume','Resume'],['blog','Blog'],['contacts','Contact']];
-    const quote = home ? 'href="#quoteModal" data-bs-toggle="modal" data-bs-target="#quoteModal"' : 'href="index.html?quote=1#home"';
+    const quote = home ? 'href="#quoteModal" data-bs-toggle="modal" data-bs-target="#quoteModal"' : 'href="/?quote=1#home"';
     const navigation = links.map(([id,label]) => `<a href="${href(id)}" ${(blog && id === 'blog') || (['project-details.html', 'portfolio.html'].includes(page) && id === 'portfolio') ? 'aria-current="page"' : ''}>${label}</a>`).join('');
     const header = document.querySelector('[data-site-header]');
     if (header) header.outerHTML = `<header class="site-header"><div class="site-header-inner"><a class="site-brand" href="${href('home')}"><img src="assets/images/logo.svg" alt="Ashish Sharma - Build, Optimize, Scale" width="225" height="48"></a><nav class="site-desktop-nav" aria-label="Main navigation">${navigation}</nav><a class="site-quote" ${quote}>Get a Quote</a><button class="site-menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="site-mobile-menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></header><div class="site-menu-overlay" id="site-mobile-menu" hidden><div class="site-menu-panel" role="dialog" aria-modal="true" aria-label="Navigation"><div class="site-menu-heading"><img src="assets/images/logo.svg" width="210" height="45" alt="Ashish Sharma"><button class="site-menu-close" aria-label="Close navigation">&#215;</button></div><nav aria-label="Mobile navigation">${navigation}<a class="site-quote" ${quote}>Get a Quote</a></nav></div></div>`;
@@ -13,7 +13,7 @@
     const footer = document.querySelector('[data-site-footer]');
     if (footer) footer.outerHTML = footerMarkup;
     const explore = document.querySelector('.footer-links');
-    if (explore) { const link = document.createElement('a'); link.href = 'blog.html'; link.textContent = 'Blog'; explore.append(link); }
+    if (explore) { const link = document.createElement('a'); link.href = '/blog'; link.textContent = 'Blog'; explore.append(link); }
     const menu = document.getElementById('site-mobile-menu');
     const toggle = document.querySelector('.site-menu-toggle');
     const close = document.querySelector('.site-menu-close');
@@ -44,8 +44,10 @@
             });});
         },{rootMargin:'-15% 0px -65% 0px'}) : null;
         sections.forEach(section=>observer?.observe(section));
-        document.addEventListener('DOMContentLoaded',()=>{
+        const showQuote = () => {
             if(new URLSearchParams(location.search).get('quote')==='1' && window.bootstrap) bootstrap.Modal.getOrCreateInstance(document.getElementById('quoteModal')).show();
-        });
+        };
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showQuote, { once: true });
+        else window.addEventListener('portfolio-homepage-ready', showQuote, { once: true });
     }
 })();

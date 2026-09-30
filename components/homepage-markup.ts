@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<!-- saved from url=(0057)# -->
-<html lang="en" class=" sizes customelements history pointerevents postmessage webgl websockets cssanimations csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox picture srcset webworkers"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Ashish Sharma | Full Stack Developer</title>
-    <meta name="robots" content="noindex, follow">
-    <meta name="description" content="Ashish Sharma is a full stack developer building fast, useful and modern digital products.">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" sizes="any" href="assets/images/favicon.svg?v=2">
-    <!-- CSS 
-    ============================================ -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/aos.css">
-    <link rel="stylesheet" href="assets/css/feature.css">
-    <!-- Style css -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="assets/css/project-gallery.css">
-
-</head>
-
-<body class="template-color-1 spybody white-version" data-spy="scroll" data-target=".navbar-example2" data-offset="150" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
-
-<div data-site-header></div>
+export const homepageMarkup = String.raw`<div data-site-header></div>
 
 
 
@@ -40,7 +14,7 @@
                             <div class="content">
                                 <div class="inner">
                                     <span class="subtitle">Welcome to my world</span>
-                                    <h1 class="title">Hi, I’m <span>Ashish Sharma</span><br>
+                                    <h1 class="title">Hi, Iâ€™m <span>Ashish Sharma</span><br>
                                         <span class="header-caption" id="page-top">
                                             <!-- type headline start-->
                                             <span class="cd-headline clip is-full-width">
@@ -58,13 +32,13 @@
 
                                     <div>
                                         <p class="description">I build reliable digital experiences across PHP, WordPress,
-                                            JavaScript, React, Next.js and server handling — from a clean interface to a
+                                            JavaScript, React, Next.js and server handling â€” from a clean interface to a
                                             dependable deployment.</p>
                                     </div>
                                     <div class="dev-terminal" aria-label="Developer status">
                                         <div class="dev-terminal-bar"><span></span><span></span><span></span><code>ashish@dev:~</code></div>
                                         <div class="dev-terminal-line"><b>$</b> <span>build</span> <em>--fast --secure --scalable</em></div>
-                                        <div class="dev-terminal-line success"><b>✓</b> ready for your next project</div>
+                                        <div class="dev-terminal-line success"><b>âœ“</b> ready for your next project</div>
                                     </div>
                                     <div class="hero-actions">
                                         <a class="rn-btn" href="#portfolio"><span>View my work</span><i class="feather-arrow-up-right"></i></a>
@@ -135,7 +109,7 @@
                         <div class="rn-service">
                             <div class="inner">
                                 <div class="icon">
-                                    
+
 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -479,7 +453,7 @@
                             <li class="nav-item">
                                 <a class="nav-link " id="education-tab" data-bs-toggle="tab" href="#education" role="tab" aria-controls="education" aria-selected="false">Education</a>
                             </li>
-                            
+
                             <!-- <li class="nav-item">
                                 <a class="nav-link" id="experience-tab" data-bs-toggle="tab" href="#experience" role="tab" aria-controls="experience" aria-selected="false">experience</a>
                             </li>
@@ -498,7 +472,7 @@
                                         <!-- Start Skill List Area  -->
                                         <div class="col-lg-6 col-md-12 col-12">
                                             <div class="content">
-                                               
+
                                                 <div class="experience-list">
 
                                                     <!-- Start Single List  -->
@@ -569,7 +543,7 @@
                                         <!-- Start Skill List Area 2nd  -->
                                         <div class="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
                                             <div class="content">
-                                                
+
                                                 <div class="experience-list">
 
                                                     <!-- Start Single List  -->
@@ -610,7 +584,7 @@
                                                                 mauris hendrerit ante.</p>
                                                         </div>
                                                     </div>
-                                         
+
 
                                                 </div>
                                             </div>
@@ -626,8 +600,8 @@
                                         <!-- Start Skill List Area  -->
                                         <div class="col-lg-6 col-md-12 col-12">
                                             <div class="content">
-                                                
-                                                <div class="experience-list">                                                   
+
+                                                <div class="experience-list">
                                                     <div class="resume-single-list">
                                                         <div class="inner">
                                                             <div class="heading">
@@ -675,7 +649,7 @@
                                         <!-- Start Skill List Area 2nd  -->
                                         <div class="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
                                             <div class="content">
-                                               
+
                                                 <div class="experience-list">
 
                                                     <!-- Start Single List  -->
@@ -716,7 +690,7 @@
                                                                 mauris hendrerit ante.</p>
                                                         </div>
                                                     </div>
-                                                
+
 
                                                 </div>
                                             </div>
@@ -728,7 +702,7 @@
                             <!-- End Single Tab  -->
 
                             <!-- Start Single Tab  -->
-                            
+
 
                         </div>
                     </div>
@@ -766,7 +740,7 @@
                                     <span class="google-badge">G</span>
                                     <span class="subtitle mt--10">Google Business Profile</span>
                                     <h3 class="title">See what clients say</h3>
-                                    <span class="designation">Real reviews • Verified on Google</span>
+                                    <span class="designation">Real reviews â€¢ Verified on Google</span>
                                 </div>
                             </div>
 
@@ -784,7 +758,7 @@
                                         <span class="date">Read genuine feedback on Google</span>
                                     </div>
 
-                                    <span class="review-stars" aria-label="Google reviews"><span>★★★★★</span></span>
+                                    <span class="review-stars" aria-label="Google reviews"><span>â˜…â˜…â˜…â˜…â˜…</span></span>
                                 </div>
 
                                 <div class="seperator"></div>
@@ -826,10 +800,10 @@
                                 <div class="title-area">
                                     <div class="title-info">
                                         <h3 class="title">Verified public profile</h3>
-                                        <span class="date">Services • Location • Client feedback</span>
+                                        <span class="date">Services â€¢ Location â€¢ Client feedback</span>
                                     </div>
 
-                                    <span class="review-stars" aria-label="Google reviews"><span>★★★★★</span></span>
+                                    <span class="review-stars" aria-label="Google reviews"><span>â˜…â˜…â˜…â˜…â˜…</span></span>
                                 </div>
 
                                 <div class="seperator"></div>
@@ -854,7 +828,7 @@
     </div>
 </div>
 
-      
+
         <!-- Start Contact section -->
         <div class="rn-contact-area rn-section-gap section-separator" id="contacts">
             <div class="container">
@@ -1198,55 +1172,24 @@
         </div>
     </div>
 </div>
-<script src="assets/js/site-layout.js"></script>
+
     <!-- JS ============================================ -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/modernizer.min.js"></script>
-    <script src="assets/js/feather.min.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/text-type.js"></script>
-    <script src="assets/js/wow.js"></script>
-    <script src="assets/js/aos.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/jquery-one-page-nav.js"></script>
+
+
+
+
+
+
+
+
+
     <!-- main JS -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/owl.carousel.js"></script>
 
 
 
-   <script>
-$(document).ready(function () {
-    var captchaAnswer = 0;
-    var captchaQuestion = $('#captcha-question');
-    var captchaInput = $('#contact-captcha');
-    var contactForm = $('#contact-form');
 
-    function createCaptcha() {
-        var first = Math.floor(Math.random() * 9) + 1;
-        var second = Math.floor(Math.random() * 9) + 1;
-        captchaAnswer = first + second;
-        captchaQuestion.text(first + ' + ' + second);
-        captchaInput.val('').removeClass('is-invalid');
-        $('#captcha-help').text('Solve the math problem to send your message.').removeClass('captcha-error');
-    }
 
-    createCaptcha();
-    $('#captcha-refresh').on('click', createCaptcha);
 
-    contactForm[0].addEventListener('submit', function (event) {
-        var enteredAnswer = Number(captchaInput.val());
-        if (enteredAnswer !== captchaAnswer) {
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            createCaptcha();
-            captchaInput.addClass('is-invalid').focus();
-            $('#captcha-help').text('Incorrect answer. Please solve the new check.').addClass('captcha-error');
-        }
-    }, true);
-});
-
-</script>
 
 <style>
     .testimonial .inner .card-description .title-area .rating {
@@ -3986,7 +3929,4 @@ body.white-version::before {
         min-width: 150px;
     }
 }
-</style>
-
-
-<link rel="stylesheet" href="assets/css/portfolio-refresh.css"><script src="assets/js/portfolio-refresh.js"></script><script src="assets/js/dynamic-content.js"></script><script src="assets/js/testimonial-slider.js"></script><script src="assets/js/mobile-sliders.js"></script><script src="assets/js/project-details.js"></script><link rel="stylesheet" href="assets/css/site-layout.css"></body></html>
+</style>`;

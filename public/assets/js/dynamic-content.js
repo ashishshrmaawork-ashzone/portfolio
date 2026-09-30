@@ -1,27 +1,13 @@
 (() => {
-    const localPreview = location.protocol === 'file:' || location.pathname.includes('/portfolio-html/html/');
-    const wordpress = 'https://reactapp.kgkrealty.com/ashportfolio/wp-json/custom/v1';
-    const names = { projects: 'portfolio-page' };
     async function request(url) {
         const response = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(15000) });
         if (!response.ok) throw new Error('Content request failed (' + response.status + ')');
         return response.json();
     }
     async function collection(name) {
-        if (!localPreview) {
-            const result = await request('/api/portfolio/' + name);
-            if (!Array.isArray(result)) throw new Error('Invalid content response');
-            return result;
-        }
-        const result = await request(wordpress + '/' + (names[name] || name));
-        if (name !== 'projects') {
-            if (!Array.isArray(result)) throw new Error('Invalid content response');
-            return result;
-        }
-        if (!result.success || !Array.isArray(result.data)) throw new Error('Invalid projects response');
-        const pages = await Promise.all(Array.from({ length: Math.max(0, result.total_pages - 1) }, (_, i) => request(wordpress + '/portfolio-page?page=' + (i + 2))));
-        if (pages.some(page => !page.success || !Array.isArray(page.data))) throw new Error('Invalid projects page');
-        return result.data.concat(...pages.map(page => page.data));
+        const result = await request('/api/portfolio/' + name);
+        if (!Array.isArray(result)) throw new Error('Invalid content response');
+        return result;
     }
     const text = value => String(value ?? '');
     function plain(value) {
@@ -171,15 +157,15 @@
                 'contact-phone': text(data.get(quote ? 'phone' : 'contact-phone')),
                 subject: quote ? 'Quote: ' + text(data.get('service')) : text(data.get('subject')),
                 'contact-message': quote ? text(data.get('details')) + '\nBudget: ' + text(data.get('budget') || 'Not specified') : text(data.get('contact-message')),
+                type: quote ? 'quote' : 'contact',
             };
             sending = true;
             const button = form.querySelector('[type="submit"]');
             button.disabled = true; feedback.textContent = 'Sending?';
             try {
-                const body = localPreview ? { name: payload['contact-name'], email: payload['contact-email'], phone: payload['contact-phone'], subject: payload.subject, message: payload['contact-message'] } : payload;
-                const response = await fetch(localPreview ? wordpress + '/contact' : '/api/contact', {
+                const response = await fetch('/api/contact', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body), signal: AbortSignal.timeout(20000),
+                    body: JSON.stringify(payload), signal: AbortSignal.timeout(20000),
                 });
                 const result = await response.json();
                 if (!response.ok || result.success === false) throw new Error(result.message || 'Your message could not be sent.');
