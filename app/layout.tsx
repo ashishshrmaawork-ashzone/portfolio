@@ -18,7 +18,13 @@ const fallbackMetadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: { icon: "/assets/images/favicon.svg?v=2" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", type: "image/x-icon", sizes: "any" },
+      { url: "/assets/images/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+  },
 };
 
 export const metadata: Metadata = fallbackMetadata;
