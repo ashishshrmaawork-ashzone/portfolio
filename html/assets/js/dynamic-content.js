@@ -40,8 +40,16 @@
         p.textContent = message;
         host.replaceChildren(p);
     }
+    function fallbackStatus(host, message) {
+        const p = document.createElement('p');
+        p.className = 'dynamic-content-status';
+        p.setAttribute('role', 'status');
+        p.textContent = message;
+        host.after(p);
+    }
     async function populate(name, host, render) {
-        status(host, 'Loading?');
+        const hasStaticContent = host.hasChildNodes();
+        if (!hasStaticContent) status(host, 'Loading content...');
         host.setAttribute('aria-busy', 'true');
         try {
             const items = await collection(name);
@@ -51,6 +59,10 @@
             return items;
         } catch (error) {
             console.error(name, error);
+            if (hasStaticContent) {
+                fallbackStatus(host, 'Live content is unavailable. Showing saved content instead.');
+                return [];
+            }
             status(host, 'This section could not load. Please try again.');
             const retry = document.createElement('button');
             retry.type = 'button'; retry.className = 'rn-btn'; retry.textContent = 'Reload page';
@@ -115,10 +127,10 @@
     }
     const projects = document.querySelector('#portfolio .row.row--25');
     if (projects) {
-        projects.className = 'project-gallery';
-        tasks.push(populate('projects', projects, items => items.slice(0, 8).forEach(item => {
-            projects.append(renderProjectCard(item));
-        })));
+        tasks.push(populate('projects', projects, items => {
+            projects.className = 'project-gallery';
+            items.slice(0, 8).forEach(item => projects.append(renderProjectCard(item)));
+        }));
     }
     for (const [id, name] of [['professional', 'workexperience'], ['education', 'education']]) {
         const host = document.querySelector('#' + id + ' .personal-experience-inner > .row');

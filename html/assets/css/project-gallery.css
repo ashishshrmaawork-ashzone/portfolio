@@ -74,6 +74,12 @@
   width: min(1140px, calc(100% - 48px));
 }
 
+.dynamic-content-status {
+  margin: 10px 0;
+  color: #62758c;
+  font-size: 12px;
+}
+
 .project-gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

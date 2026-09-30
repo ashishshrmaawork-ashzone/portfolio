@@ -1,15 +1,17 @@
 (async () => {
     const host = document.getElementById('google-reviews-list');
     if (!host) return;
-    host.textContent = 'Loading testimonials?';
     let reviews;
     try {
         const items = await window.portfolioApi.collection('testimonials');
         reviews = items.map(item => ({ author: window.portfolioApi.plain(item.title), category: window.portfolioApi.plain(item.review_title || item.designation), image: window.portfolioApi.url(item.photo), text: window.portfolioApi.plain(item.review), detail: window.portfolioApi.plain(item.review_detail), designation: window.portfolioApi.plain(item.designation) }));
     } catch (error) {
         console.error('Testimonials failed', error);
-        host.className = 'stories-slider';
-        host.textContent = 'Testimonials are temporarily unavailable.';
+        const notice = document.createElement('p');
+        notice.className = 'dynamic-content-status';
+        notice.setAttribute('role', 'status');
+        notice.textContent = 'Live testimonials are unavailable. Showing saved content instead.';
+        host.after(notice);
         return;
     }
     if (!reviews.length) { host.className = 'stories-slider'; host.textContent = 'No testimonials published yet.'; return; }
