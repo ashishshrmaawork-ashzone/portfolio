@@ -1,4 +1,3 @@
-import { cache } from "react";
 const defaultApiUrl = "https://reactapp.kgkrealty.com/ashportfolio/wp-json";
 const apiUrl = (process.env.WORDPRESS_API_URL?.trim() || defaultApiUrl).replace(/\/+$/, "");
 const customApiUrl = apiUrl.endsWith("/custom/v1")
@@ -103,26 +102,6 @@ function assertArray<T>(data: unknown, endpoint: string): T[] {
   }
 
   return data as T[];
-}
-
-function isStringRecord(data: unknown): data is SiteSettings {
-  return (
-    !!data &&
-    typeof data === "object" &&
-    !Array.isArray(data) &&
-    Object.values(data).every((value) => typeof value === "string")
-  );
-}
-
-export async function getSiteSettings(): Promise<SiteSettings> {
-  const data: unknown = await requestJson("/site-settings", {
-    next: { revalidate: 60 },
-  });
-  if (!isStringRecord(data)) {
-    throw new Error("WordPress API returned invalid site settings.");
-  }
-
-  return data;
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -300,7 +279,6 @@ export async function submitContactMessage(
   });
 }
 
-export const loadSiteSettings = cache(async (): Promise<SiteSettings> => {
-  try { return await getSiteSettings(); }
-  catch { console.error("WordPress site settings unavailable; using fallback content."); return {}; }
-});
+export async function loadSiteSettings(): Promise<SiteSettings> {
+  return {};
+}

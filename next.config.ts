@@ -1,29 +1,19 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      { source: "/index.html", destination: "/", permanent: true },
-      { source: "/portfolio.html", destination: "/projects", permanent: true },
-      {
-        source: "/project-details.html",
-        has: [{ type: "query", key: "project", value: "(?<slug>[^&]+)" }],
-        destination: "/projects/:slug",
-        permanent: true,
-      },
-      {
-        source: "/project-details.html",
-        destination: "/projects",
-        permanent: true,
-      },
-      { source: "/blog.html", destination: "/blog", permanent: true },
-      {
-        source: "/blog-detail.html",
-        has: [{ type: "query", key: "article", value: "(?<slug>[^&]+)" }],
-        destination: "/blog/:slug",
-        permanent: true,
-      },
-      { source: "/blog-detail.html", destination: "/blog", permanent: true },
-    ];
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: "/", destination: "/original/index.html" },
+        { source: "/index.html", destination: "/original/index.html" },
+        { source: "/portfolio.html", destination: "/original/portfolio.html" },
+        { source: "/project-details.html", destination: "/original/project-details.html" },
+        { source: "/blog.html", destination: "/original/blog.html" },
+        { source: "/blog-detail.html", destination: "/original/blog-detail.html" },
+        { source: "/assets/:path*", destination: "/original/assets/:path*" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
   },
 };
 export default nextConfig;

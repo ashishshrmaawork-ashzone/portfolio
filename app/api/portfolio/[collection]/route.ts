@@ -4,12 +4,10 @@ import {
   getEducation,
   getProjects,
   getServices,
-  getSiteSettings,
   getTestimonials,
   getWorkExperience,
 } from "@/lib/wordpress";
 const collections = {
-  "site-settings": getSiteSettings,
   blog: getBlogPosts,
   services: getServices, projects: getProjects, workexperience: getWorkExperience,
   education: getEducation, testimonials: getTestimonials,
@@ -24,7 +22,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ col
     return NextResponse.json(data, {
       headers: {
         "Cache-Control":
-          collection === "site-settings" || collection === "blog"
+          collection === "blog"
             ? "public, s-maxage=60, stale-while-revalidate=120"
             : "public, s-maxage=300, stale-while-revalidate=600",
       },

@@ -6,9 +6,12 @@ supplies editable site content; static design assets live in `public/assets/`.
 
 ## Local development
 
-Run `npm install`, then `npm run dev` and open http://localhost:3000. Set
-`WORDPRESS_API_URL` in `.env.local` only if the WordPress REST root differs
-from the default in `.env.example`.
+Run `npm install`, then `npm run dev` and open http://localhost:3000. The
+original site layout is served from `html/`; the `predev` and `prebuild`
+scripts copy it to the generated `public/original/` directory. The portfolio
+content API defaults to
+`https://reactapp.kgkrealty.com/ashportfolio/wp-json`; set `WORDPRESS_API_URL`
+in `.env.local` or Vercel only if that REST root changes.
 
 ## WordPress content management
 
