@@ -21,7 +21,8 @@ export function SiteHeader() {
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-  const quoteHref = "/#quote";
+  const isHomepage = pathname === "/";
+  const quoteHref = isHomepage ? "#quoteModal" : "/#quote";
   const quoteLabel = settings.nav_quote ?? "Get a Quote";
 
   useEffect(() => {
@@ -72,7 +73,12 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link className="site-quote" href={quoteHref}>
+        <Link
+          className="site-quote"
+          href={quoteHref}
+          data-bs-toggle={isHomepage ? "modal" : undefined}
+          data-bs-target={isHomepage ? "#quoteModal" : undefined}
+        >
           {quoteLabel} <span aria-hidden="true">↗</span>
         </Link>
         <button
@@ -101,7 +107,13 @@ export function SiteHeader() {
                   {settings[key] || label}
                 </Link>
               ))}
-              <Link className="site-quote" href={quoteHref} onClick={() => setMenuOpen(false)}>
+              <Link
+                className="site-quote"
+                href={quoteHref}
+                data-bs-toggle={isHomepage ? "modal" : undefined}
+                data-bs-target={isHomepage ? "#quoteModal" : undefined}
+                onClick={() => setMenuOpen(false)}
+              >
                 {quoteLabel} <span aria-hidden="true">↗</span>
               </Link>
             </nav>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSiteSettings } from "@/components/site-settings-provider";
 
-export function SiteFooter() {
+export function SiteFooter({ className = "rn-footer-area" }: { className?: string }) {
   const settings = useSiteSettings();
   const services = (settings.footer_services ?? "Web Development\nPerformance Optimization\nServer Handling\nWebsite Maintenance")
     .split(/\r?\n/)
@@ -11,7 +11,7 @@ export function SiteFooter() {
     .filter(Boolean);
 
   return (
-    <footer className="rn-footer-area">
+    <footer className={className}>
       <div className="container">
         <div className="footer-grid">
           <div className="footer-intro">

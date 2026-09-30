@@ -1,6 +1,9 @@
 # Ashish Sharma Portfolio
 
-The website is a Next.js application. Pages use extensionless routes:
+The website is a Next.js application. The homepage is implemented as
+section-based React JSX in `components/homepage.tsx`, with its page-specific
+styles in `app/homepage.css`; shared React site chrome remains available on
+non-home routes. Pages use extensionless routes:
 `/`, `/projects`, `/projects/[slug]`, `/blog` and `/blog/[slug]`. The homepage
 uses the existing portfolio layout, rendered by a Next.js page; styles, scripts
 and images live in `public/assets/`. WordPress supplies editable site content.
