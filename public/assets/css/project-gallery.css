@@ -67,7 +67,10 @@
 }
 
 .portfolio-gallery-section {
-  padding: 34px 24px 64px;
+  box-sizing: border-box;
+  width: min(1200px, calc(100% - 48px));
+  margin-inline: auto;
+  padding: 34px 0 64px;
 }
 
 .portfolio-archive > .shell {
@@ -497,7 +500,8 @@
   }
 
   .portfolio-gallery-section {
-    padding: 24px 16px 44px;
+    width: calc(100% - 32px);
+    padding: 24px 0 44px;
   }
 
   .project-gallery {
