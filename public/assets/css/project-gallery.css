@@ -116,7 +116,7 @@
 .project-gallery-image {
   z-index: -2;
   object-fit: cover;
-  transition: transform 350ms ease;
+  transition: filter 350ms ease, transform 350ms ease;
 }
 
 .project-gallery-placeholder {
@@ -133,6 +133,21 @@
   z-index: -1;
   background: rgb(16 41 82 / 12%);
   transition: background-color 250ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-gallery-image,
+  .portfolio-detail-page .monitor-screen img {
+    filter: blur(3px);
+    transition: filter 350ms ease, transform 350ms ease;
+  }
+
+  .project-gallery-card:hover .project-gallery-image,
+  .project-gallery-card:focus-within .project-gallery-image,
+  .portfolio-detail-page .monitor-screen:hover img,
+  .portfolio-detail-page .monitor-screen:focus-within img {
+    filter: blur(0);
+  }
 }
 
 .project-gallery-card:hover .project-gallery-image,
@@ -554,5 +569,10 @@
   .project-gallery-caption,
   .project-gallery-actions {
     transition: none;
+  }
+
+  .project-gallery-image,
+  .portfolio-detail-page .monitor-screen img {
+    filter: none;
   }
 }
