@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { plainText, type PortfolioProject } from "@/lib/wordpress";
 
 function getSafeUrl(url: string): string | null {
@@ -17,7 +18,7 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
   return (
     <>
       <div className="project-gallery">
-        {projects.map((project) => {
+        {projects.map((project, index) => {
           const title = plainText(project.title);
           const thumbnail = getSafeUrl(project.thumbnail_image);
           const details = `/projects/${encodeURIComponent(project.slug)}`;
@@ -25,11 +26,15 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
           return (
             <article className="project-gallery-card" key={project.id}>
               {thumbnail ? (
-                <img
+                <Image
                   className="project-gallery-image"
                   src={thumbnail}
+                  fill
+                  sizes="(max-width: 420px) 100vw, (max-width: 900px) 50vw, 33vw"
+                  quality={70}
                   alt=""
-                  loading="lazy"
+                  loading={index < 3 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                 />
               ) : (
                 <div className="project-gallery-placeholder" aria-hidden="true">

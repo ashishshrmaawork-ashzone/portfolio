@@ -1,5 +1,16 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "reactapp.kgkrealty.com",
+        pathname: "/ashportfolio/wp-content/uploads/**",
+      },
+    ],
+    formats: ["image/webp"],
+    qualities: [70],
+  },
   async headers() {
     return [
       {

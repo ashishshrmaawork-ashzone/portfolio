@@ -8,6 +8,11 @@ const websiteStructuredData = {
   name: "Ashish Sharma",
   alternateName: ["Ashish Sharma Portfolio", "Ashish Sharma | Full Stack Developer"],
   url: "https://ashishshrmaa.vercel.app/",
+  publisher: {
+    "@type": "Person",
+    name: "Ashish Sharma",
+    url: "https://ashishshrmaa.vercel.app/",
+  },
 };
 
 export const metadata: Metadata = {

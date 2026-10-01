@@ -6,8 +6,24 @@ const fallbackMetadata: Metadata = {
   metadataBase: new URL("https://ashishshrmaa.vercel.app"),
   title: "Ashish Sharma | Full Stack Developer",
   applicationName: "Ashish Sharma",
+  authors: [{ name: "Ashish Sharma" }],
+  creator: "Ashish Sharma",
+  publisher: "Ashish Sharma",
   description:
     "Ashish Sharma builds fast, useful and modern digital products with PHP, WordPress, JavaScript, React and Next.js.",
+  openGraph: {
+    type: "website",
+    siteName: "Ashish Sharma",
+    title: "Ashish Sharma | Full Stack Developer",
+    description:
+      "Ashish Sharma builds fast, useful and modern digital products with PHP, WordPress, JavaScript, React and Next.js.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Ashish Sharma | Full Stack Developer",
+    description:
+      "Ashish Sharma builds fast, useful and modern digital products with PHP, WordPress, JavaScript, React and Next.js.",
+  },
   robots: {
     index: true,
     follow: true,

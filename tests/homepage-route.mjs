@@ -11,6 +11,7 @@ assert.match(page, /canonical:\s*"\/"/);
 assert.match(page, /openGraph:/);
 assert.match(page, /name: "Ashish Sharma"/);
 assert.match(page, /"@type": "WebSite"/);
+assert.match(page, /publisher:\s*\{\s*"@type": "Person",\s*name: "Ashish Sharma"/);
 assert.match(page, /dangerouslySetInnerHTML=\{\{ __html: JSON\.stringify\(websiteStructuredData\) \}\}/);
 assert.match(page, /twitter:/);
 const styles = await readFile(new URL("../app/homepage.css", import.meta.url), "utf8");
@@ -60,6 +61,8 @@ assert.match(config, /source: "\/terms-of-use", destination: "\/terms-and-condit
 assert.match(config, /X-Robots-Tag/);
 const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
 assert.match(layout, /url: "\/favicon\.ico"/);
+assert.match(layout, /publisher: "Ashish Sharma"/);
+assert.match(layout, /siteName: "Ashish Sharma"/);
 assert.match(layout, /url: "\/assets\/images\/favicon\.svg"/);
 const favicon = await readFile(new URL("../public/favicon.ico", import.meta.url));
 assert.equal(favicon.readUInt16LE(2), 1, "root favicon uses the ICO image format");

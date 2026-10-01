@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjects, plainText } from "@/lib/wordpress";
@@ -77,7 +78,15 @@ export default async function ProjectPage({
                 aria-label={`${plainText(project.title)} website preview on monitor. Scroll inside the screen to view the full page.`}
                 tabIndex={0}
               >
-                <img src={image} alt={`${plainText(project.title)} full-page website preview`} />
+                <Image
+                  src={image}
+                  alt={`${plainText(project.title)} full-page website preview`}
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 767px) 100vw, 1040px"
+                  quality={70}
+                  priority
+                />
               </div>
             </div>
             <div className="monitor-stand" aria-hidden="true">
