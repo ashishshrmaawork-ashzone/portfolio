@@ -522,15 +522,20 @@ html { scroll-padding-top:80px; }
 }
 #testimonial .section-title .title { text-transform:none; }
 
-/* Mobile-only portfolio and resume carousels; original desktop grids retained. */
+/* Mobile-only service, portfolio, and resume carousels; original desktop grids retained. */
 .mobile-resume-track, .mobile-cards-controls { display:none; }
 @media(max-width:767px) {
-#portfolio .mobile-portfolio-track, #resume .mobile-resume-track {
+#features .mobile-services-track, #portfolio .mobile-portfolio-track, #resume .mobile-resume-track {
     display:flex; flex-wrap:nowrap; gap:16px; overflow-x:auto; overflow-y:hidden;
     scroll-snap-type:x mandatory; overscroll-behavior-x:contain; scrollbar-width:none;
     margin:24px 0 0 !important; padding:4px 0 14px; align-items:stretch;
 }
-#portfolio .mobile-portfolio-track::-webkit-scrollbar, #resume .mobile-resume-track::-webkit-scrollbar { display:none; }
+#features .mobile-services-track::-webkit-scrollbar, #portfolio .mobile-portfolio-track::-webkit-scrollbar, #resume .mobile-resume-track::-webkit-scrollbar { display:none; }
+#features .mobile-services-track > div {
+    flex:0 0 100%; width:100%; max-width:100%; min-width:0; padding:0;
+    margin:0 !important; scroll-snap-align:start; opacity:1 !important; transform:none !important; transition:none !important;
+}
+#features .mobile-services-track .rn-service { box-sizing:border-box; min-height:100%; }
 #portfolio .mobile-portfolio-track > div {
     flex:0 0 100%; width:100%; max-width:100%; min-width:0; padding:0;
     margin:0 !important; scroll-snap-align:start; opacity:1 !important; transform:none !important; transition:none !important;
@@ -554,7 +559,7 @@ html { scroll-padding-top:80px; }
 .mobile-cards-buttons button { width:44px; height:44px; display:grid; place-items:center; padding:0; border:1px solid #cbdcf0; border-radius:50%; background:white; color:#2563eb; font-size:22px; box-shadow:none; }
 .mobile-cards-buttons button:disabled { opacity:.35; cursor:default; }
 .mobile-cards-buttons button:focus-visible,
-.mobile-portfolio-track:focus-visible, .mobile-resume-track:focus-visible { outline:2px solid #2563eb; outline-offset:3px; }
+.mobile-services-track:focus-visible, .mobile-portfolio-track:focus-visible, .mobile-resume-track:focus-visible { outline:2px solid #2563eb; outline-offset:3px; }
 }
 
 #portfolio .project-details-link { display:inline-flex; align-items:center; justify-content:space-between; gap:14px; min-height:44px; margin-top:16px; padding:10px 14px; border:1px solid #dce6f5; border-radius:9px; background:#f3f7ff; color:#2563eb; font-size:13px; font-weight:600; }

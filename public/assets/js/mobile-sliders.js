@@ -62,6 +62,12 @@
         sliders.push({ sync, update });
         return sync;
     }
+    const services = document.querySelector('#features .row.row--25');
+    if (services && services.querySelector('.rn-service')) {
+        services.classList.add('mobile-services-track');
+        services.id = 'mobile-services-track';
+        controls(services, [...services.children], 'service');
+    }
     const portfolio = document.querySelector('#portfolio .row.row--25');
     if (portfolio && portfolio.querySelector(".rn-portfolio")) {
         portfolio.classList.add('mobile-portfolio-track');
