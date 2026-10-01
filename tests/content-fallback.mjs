@@ -67,6 +67,17 @@ try {
   assert.equal("poster_image" in apiProjects[0], false);
   assert.deepEqual(apiPosts.map((post) => post.slug), ["api-article"]);
 
+  let projectsCacheMode;
+  globalThis.fetch = async (input, init) => {
+    if (!String(input).includes("/portfolio-page")) {
+      throw new Error(`Unexpected request: ${String(input)}`);
+    }
+    projectsCacheMode = { cache: init?.cache, revalidate: init?.next?.revalidate };
+    return Response.json({ success: true, total_pages: 1, data: [] });
+  };
+  await wordpress.getProjects();
+  assert.deepEqual(projectsCacheMode, { cache: undefined, revalidate: 0 });
+
   const resumeRequests = [];
   globalThis.fetch = async (input, init) => {
     const url = String(input);

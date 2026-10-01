@@ -251,7 +251,8 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 
 export async function getProjects(): Promise<PortfolioProject[]> {
   try {
-    const firstPage = await requestJson<PortfolioPage>("/portfolio-page");
+    const projectRequest = { next: { revalidate: 0 } };
+    const firstPage = await requestJson<PortfolioPage>("/portfolio-page", projectRequest);
 
     if (
       !firstPage.success ||
@@ -264,7 +265,7 @@ export async function getProjects(): Promise<PortfolioProject[]> {
 
     const otherPages = await Promise.all(
       Array.from({ length: Math.max(0, firstPage.total_pages - 1) }, (_, index) =>
-        requestJson<PortfolioPage>(`/portfolio-page?page=${index + 2}`),
+        requestJson<PortfolioPage>(`/portfolio-page?page=${index + 2}`, projectRequest),
       ),
     );
 

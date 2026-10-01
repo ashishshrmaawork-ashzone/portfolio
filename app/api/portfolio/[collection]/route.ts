@@ -7,6 +7,9 @@ import {
   getTestimonials,
   getWorkExperience,
 } from "@/lib/wordpress";
+
+export const dynamic = "force-dynamic";
+
 const collections = {
   blog: getBlogPosts,
   services: getServices, projects: getProjects, workexperience: getWorkExperience,
@@ -21,10 +24,9 @@ export async function GET(_request: Request, { params }: { params: Promise<{ col
     const data = await collections[collection as keyof typeof collections]();
     return NextResponse.json(data, {
       headers: {
-        "Cache-Control":
-          collection === "workexperience" || collection === "education"
-            ? "no-store"
-            : collection === "blog"
+        "Cache-Control": collection === "projects" || collection === "workexperience" || collection === "education"
+          ? "no-store"
+          : collection === "blog"
             ? "public, s-maxage=60, stale-while-revalidate=120"
             : "public, s-maxage=300, stale-while-revalidate=600",
       },
