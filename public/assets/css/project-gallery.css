@@ -310,11 +310,10 @@
 
 .portfolio-detail-page .monitor-screen img {
   display: block;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
+  max-width: none;
   height: auto;
   max-height: none;
-  margin-inline: auto;
   object-fit: initial;
   border-radius: 0;
   background: #fff;
