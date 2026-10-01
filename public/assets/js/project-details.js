@@ -22,22 +22,20 @@
         text('project-number', String(index + 1).padStart(2, '0'));
         text('preview-category', project.category);
         text('summary-category', project.category);
-        text('project-overview-copy', project.content);
+        text('project-overview-copy', project.short_description || project.excerpt || project.content);
         const image = document.getElementById('project-image');
-        const source = url(project.poster_image) || url(project.thumbnail_image);
-        if (source) { image.src = source; image.alt = plain(project.title) + ' ? project preview'; }
+        const source = url(project.detail_image) || url(project.thumbnail_image);
+        if (source) { image.src = source; image.alt = plain(project.title) + ' project preview'; }
         else image.closest('figure').hidden = true;
         const summary = document.querySelector('.project-summary dl');
-        if (project.tech) {
+        const technologies = Array.isArray(project.technologies)
+            ? project.technologies.map(technology => technology.name).filter(Boolean).join(', ')
+            : '';
+        if (technologies) {
             const row = document.createElement('div');
             const label = document.createElement('dt'); label.textContent = 'Technologies';
-            const value = document.createElement('dd'); value.textContent = plain(project.tech);
+            const value = document.createElement('dd'); value.textContent = plain(technologies);
             row.append(label, value); summary.append(row);
-        }
-        if (url(project.url)) {
-            const link = document.createElement('a'); link.className = 'text-link';
-            link.href = url(project.url); link.target = '_blank'; link.rel = 'noopener noreferrer';
-            link.textContent = 'Visit live website ?'; summary.after(link);
         }
         for (const [id, offset] of [['previous-project', -1], ['next-project', 1]]) {
             const item = projects[(index + offset + projects.length) % projects.length];

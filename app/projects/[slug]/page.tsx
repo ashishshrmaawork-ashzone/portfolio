@@ -25,7 +25,7 @@ export async function generateMetadata({
 
   return {
     title: `${plainText(project.title)} | Ashish Sharma`,
-    description: plainText(project.content).slice(0, 160),
+    description: plainText(project.short_description || project.excerpt || project.content).slice(0, 160),
   };
 }
 
@@ -42,8 +42,9 @@ export default async function ProjectPage({
   const project = projects[index];
   const previous = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
-  const image = safeHttpUrl(project.poster_image) || safeHttpUrl(project.thumbnail_image);
-  const projectUrl = safeHttpUrl(project.url);
+  const image = safeHttpUrl(project.detail_image) || safeHttpUrl(project.thumbnail_image);
+  const description = project.short_description || project.excerpt || project.content;
+  const technologies = project.technologies.map((technology) => technology.name).join(", ");
 
   return (
     <main className="project-main portfolio-detail-page">
@@ -94,16 +95,16 @@ export default async function ProjectPage({
           <div>
             <span className="eyebrow">OVERVIEW</span>
             <h2>About this project</h2>
-            <p className="project-description">{plainText(project.content) || "Project details coming soon."}</p>
+            <p className="project-description">{plainText(description) || "Project details coming soon."}</p>
           </div>
           <aside className="project-summary">
             <h2>Project details</h2>
             <dl>
               <div><dt>Category</dt><dd>{plainText(project.category || "Web development")}</dd></div>
-              {project.tech && <div><dt>Technologies</dt><dd>{plainText(project.tech)}</dd></div>}
-              {project.date && <div><dt>Completed</dt><dd>{plainText(project.date)}</dd></div>}
+              {technologies && <div><dt>Technologies</dt><dd>{plainText(technologies)}</dd></div>}
+              {project.client && <div><dt>Client</dt><dd>{plainText(project.client)}</dd></div>}
+              {(project.year || project.date) && <div><dt>Completed</dt><dd>{plainText(project.year || project.date)}</dd></div>}
             </dl>
-            {projectUrl && <a className="text-link" href={projectUrl} target="_blank" rel="noreferrer">Visit live project ↗</a>}
           </aside>
         </section>
         <section className="project-cta">

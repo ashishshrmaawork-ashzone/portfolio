@@ -32,12 +32,16 @@ try {
           id: 999,
           title: "API project only",
           slug: "api-only",
+          excerpt: "",
           content: "",
           thumbnail_image: "",
-          poster_image: "",
-          url: "",
-          category: "",
-          tech: "",
+          detail_image: "https://example.com/detail.png",
+          client: "",
+          year: "2025",
+          technologies: [{ id: 4, name: "React", slug: "react" }],
+          short_description: "A React project.",
+          category: "Frontend Development",
+          categories: [{ id: 2, name: "Frontend Development", slug: "frontend-development" }],
           date: "",
         }],
       });
@@ -57,6 +61,10 @@ try {
   const apiProjects = await wordpress.getProjects();
   const apiPosts = await wordpress.getBlogPosts();
   assert.deepEqual(apiProjects.map((project) => project.slug), ["api-only"]);
+  assert.equal(apiProjects[0].detail_image, "https://example.com/detail.png");
+  assert.deepEqual(apiProjects[0].technologies.map((technology) => technology.name), ["React"]);
+  assert.equal("url" in apiProjects[0], false);
+  assert.equal("poster_image" in apiProjects[0], false);
   assert.deepEqual(apiPosts.map((post) => post.slug), ["api-article"]);
 
   const resumeRequests = [];

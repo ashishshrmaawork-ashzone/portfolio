@@ -20,16 +20,14 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
         {projects.map((project) => {
           const title = plainText(project.title);
           const thumbnail = getSafeUrl(project.thumbnail_image);
-          const poster = getSafeUrl(project.poster_image);
-          const image = thumbnail || poster;
           const details = `/projects/${encodeURIComponent(project.slug)}`;
 
           return (
             <article className="project-gallery-card" key={project.id}>
-              {image ? (
+              {thumbnail ? (
                 <img
                   className="project-gallery-image"
-                  src={image}
+                  src={thumbnail}
                   alt=""
                   loading="lazy"
                 />

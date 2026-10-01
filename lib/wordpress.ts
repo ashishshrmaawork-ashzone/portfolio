@@ -24,13 +24,23 @@ export interface PortfolioProject {
   id: number;
   title: string;
   slug: string;
+  excerpt: string;
   content: string;
   thumbnail_image: string;
-  poster_image: string;
-  url: string;
+  detail_image: string;
+  client: string;
+  year: string;
+  technologies: PortfolioTerm[];
+  short_description: string;
   category: string;
-  tech: string;
+  categories: PortfolioTerm[];
   date: string;
+}
+
+export interface PortfolioTerm {
+  id: number;
+  name: string;
+  slug: string;
 }
 
 export interface Service {
@@ -79,17 +89,17 @@ interface WordPressPost {
 }
 
 const fallbackProjects: PortfolioProject[] = [
-  { id: 28, title: "Softart", slug: "softart", content: "A globally trusted ERP partner for NetSuite, Oracle, and Microsoft.", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/A-Globally-Trusted-ERP-Partner-for-NetSuite-Oracle-Microsoft-05-13-2026_02_37_PM-scaled-e1780562354304.png", poster_image: "", url: "https://softartsolutionsinc.com/", category: "IT", tech: "HTML, CSS, JS, Wordpress, PHP, REST API", date: "2026-06-04" },
-  { id: 27, title: "Radiant-Dental-Care", slug: "radiant-dental-care", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Best-Affordable-Dental-Clinic-in-Chennai-Radiant-Dental-Care-05-13-2026_03_07_PM-scaled-e1780802816897.png", poster_image: "", url: "", category: "Health Care", tech: "", date: "2026-06-04" },
-  { id: 26, title: "Firevolt Solar", slug: "firevolt-solar", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Firevolt-Solar-Premium-Solar-Panels-Renewable-Energy-Solutions-–-Transform-Your-Energy-with-Firevolt-Solar-05-13-2026_06_01_PM-scaled.png", poster_image: "", url: "", category: "Portfolio", tech: "", date: "2026-06-04" },
-  { id: 25, title: "Game Acadmey", slug: "game-acadmey", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Game-05-13-2026_03_28_PM-scaled.png", poster_image: "", url: "", category: "Education", tech: "", date: "2026-06-04" },
-  { id: 24, title: "Shyam Advisory", slug: "shyam-advisory", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Get-Expert-Share-Market-Tips-only-with-Shyam-Advisory-®-05-13-2026_05_56_PM-scaled.png", poster_image: "", url: "", category: "Investment", tech: "", date: "2026-06-04" },
-  { id: 23, title: "Insight Opnion", slug: "insight-opnion", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Insights-Opinion-–-Market-Research-05-13-2026_03_49_PM-scaled.png", poster_image: "", url: "", category: "Education", tech: "", date: "2026-06-04" },
-  { id: 22, title: "Jaypee University", slug: "jaypee-university", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Jaypee-University-of-Engineering-and-Technology-Best-University-Guna-05-13-2026_03_25_PM-scaled.png", poster_image: "", url: "", category: "Education", tech: "", date: "2026-06-04" },
-  { id: 21, title: "Manya Dental", slug: "manya-dental", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Manya-Dental-—-Best-Dental-Clinic-in-Bangalore-8-Clinics-05-13-2026_03_22_PM-scaled.png", poster_image: "", url: "", category: "Health Care", tech: "", date: "2026-06-04" },
-  { id: 20, title: "Oracare Prime", slug: "oracare-prime", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Oracare-Prime-Dental-05-13-2026_03_53_PM-scaled.png", poster_image: "", url: "", category: "Health Care", tech: "", date: "2026-06-04" },
-  { id: 19, title: "PSRI Best Hospital in Delhi", slug: "psri-best-hospital-in-delhi", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/PSRI-Best-Hospital-in-Delhi-Ncr-India-24-Hours-Emergency-Hospital-Near-Me-05-13-2026_02_36_PM-scaled.png", poster_image: "", url: "", category: "Health Care", tech: "", date: "2026-06-04" },
-  { id: 6, title: "Zyva", slug: "zyva", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Zyva-05-13-2026_03_18_PM-scaled.png", poster_image: "", url: "", category: "Health Care", tech: "", date: "2026-06-04" },
+  { id: 28, title: "Softart", slug: "softart", excerpt: "", content: "A globally trusted ERP partner for NetSuite, Oracle, and Microsoft.", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/A-Globally-Trusted-ERP-Partner-for-NetSuite-Oracle-Microsoft-05-13-2026_02_37_PM-scaled-e1780562354304.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "IT", categories: [], date: "2026-06-04" },
+  { id: 27, title: "Radiant-Dental-Care", slug: "radiant-dental-care", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Best-Affordable-Dental-Clinic-in-Chennai-Radiant-Dental-Care-05-13-2026_03_07_PM-scaled-e1780802816897.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Health Care", categories: [], date: "2026-06-04" },
+  { id: 26, title: "Firevolt Solar", slug: "firevolt-solar", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Firevolt-Solar-Premium-Solar-Panels-Renewable-Energy-Solutions-–-Transform-Your-Energy-with-Firevolt-Solar-05-13-2026_06_01_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Portfolio", categories: [], date: "2026-06-04" },
+  { id: 25, title: "Game Acadmey", slug: "game-acadmey", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Game-05-13-2026_03_28_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Education", categories: [], date: "2026-06-04" },
+  { id: 24, title: "Shyam Advisory", slug: "shyam-advisory", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Get-Expert-Share-Market-Tips-only-with-Shyam-Advisory-®-05-13-2026_05_56_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Investment", categories: [], date: "2026-06-04" },
+  { id: 23, title: "Insight Opnion", slug: "insight-opnion", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Insights-Opinion-–-Market-Research-05-13-2026_03_49_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Education", categories: [], date: "2026-06-04" },
+  { id: 22, title: "Jaypee University", slug: "jaypee-university", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Jaypee-University-of-Engineering-and-Technology-Best-University-Guna-05-13-2026_03_25_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Education", categories: [], date: "2026-06-04" },
+  { id: 21, title: "Manya Dental", slug: "manya-dental", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Manya-Dental-—-Best-Dental-Clinic-in-Bangalore-8-Clinics-05-13-2026_03_22_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Health Care", categories: [], date: "2026-06-04" },
+  { id: 20, title: "Oracare Prime", slug: "oracare-prime", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Oracare-Prime-Dental-05-13-2026_03_53_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Health Care", categories: [], date: "2026-06-04" },
+  { id: 19, title: "PSRI Best Hospital in Delhi", slug: "psri-best-hospital-in-delhi", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/PSRI-Best-Hospital-in-Delhi-Ncr-India-24-Hours-Emergency-Hospital-Near-Me-05-13-2026_02_36_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Health Care", categories: [], date: "2026-06-04" },
+  { id: 6, title: "Zyva", slug: "zyva", excerpt: "", content: "", thumbnail_image: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Zyva-05-13-2026_03_18_PM-scaled.png", detail_image: "", client: "", year: "2026", technologies: [], short_description: "", category: "Health Care", categories: [], date: "2026-06-04" },
 ];
 
 const fallbackBlogPosts: BlogPost[] = [
