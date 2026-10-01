@@ -82,7 +82,7 @@
 
 .project-gallery {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
   max-width: none;
   margin-inline: auto;
@@ -131,7 +131,7 @@
 
 .project-gallery-shade {
   z-index: -1;
-  background: rgb(16 41 82 / 34%);
+  background: rgb(16 41 82 / 12%);
   transition: background-color 250ms ease;
 }
 
@@ -310,10 +310,11 @@
 
 .portfolio-detail-page .monitor-screen img {
   display: block;
-  width: 100%;
-  max-width: none;
+  width: auto;
+  max-width: 100%;
   height: auto;
   max-height: none;
+  margin-inline: auto;
   object-fit: initial;
   border-radius: 0;
   background: #fff;
@@ -467,7 +468,7 @@
 
 @media (max-width: 900px) {
   .project-gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -526,7 +527,17 @@
   }
 }
 
+@media (max-width: 420px) {
+  .project-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (hover: none) {
+  .project-gallery-shade {
+    background: rgb(16 41 82 / 24%);
+  }
+
   .project-gallery-actions {
     align-items: center;
     opacity: 1;
