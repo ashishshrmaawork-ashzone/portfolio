@@ -30,7 +30,7 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
                   className="project-gallery-image"
                   src={thumbnail}
                   fill
-                  sizes="(max-width: 420px) 100vw, (max-width: 900px) 50vw, 33vw"
+                  sizes="(max-width: 420px) 100vw, (max-width: 620px) 50vw, (max-width: 900px) 33vw, 25vw"
                   quality={70}
                   alt=""
                   loading={index < 3 ? "eager" : "lazy"}
