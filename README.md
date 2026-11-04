@@ -38,7 +38,9 @@ the configurable **Enquiry notification email**, initially
 `ashishshrmaa@outlook.com`. Configure a working WordPress mail/SMTP transport
 on the WordPress host if you want its separate notification too. After every
 form submission is saved successfully, the Next.js API sends an email through
-Brevo so delivery does not depend on WordPress's `wp_mail` acceptance status.
+Brevo to the site owner and a separate acknowledgement to the submitter, so
+delivery does not depend on WordPress's `wp_mail` acceptance status. The
+submitter acknowledgement confirms receipt and says you will follow up soon.
 Configure `BREVO_API_KEY` and a verified `BREVO_FROM_EMAIL` in the hosting
 environment; `BREVO_FROM_NAME` optionally sets the sender name, and
 `CONTACT_NOTIFICATION_EMAIL` optionally overrides the recipient.

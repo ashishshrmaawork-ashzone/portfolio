@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { sendContactNotification } from "@/lib/contact-email";
+import { sendContactConfirmation, sendContactNotification } from "@/lib/contact-email";
 import { submitContactMessage } from "@/lib/wordpress";
 
 export async function POST(request: Request) {
@@ -94,15 +94,27 @@ export async function POST(request: Request) {
     );
   }
 
-  try {
-    await sendContactNotification({ name, email, phone, subject, message, type });
-  } catch (error) {
-    console.error("Brevo contact notification failed.", error);
+  const notification = { name, email, phone, subject, message, type };
+  const emailResults = await Promise.allSettled([
+    sendContactNotification(notification),
+    sendContactConfirmation(notification),
+  ]);
+  let emailFailed = false;
+  for (const [index, result] of emailResults.entries()) {
+    if (result.status === "rejected") {
+      emailFailed = true;
+      console.error(
+        index === 0 ? "Brevo owner notification failed." : "Brevo customer confirmation failed.",
+        result.reason,
+      );
+    }
+  }
+  if (emailFailed) {
     return NextResponse.json(
-      { message: "Your enquiry was saved, but its email notification could not be sent. Please do not submit again; contact us directly." },
+      { message: "Your enquiry was saved, but one or more email notifications could not be sent. Please do not submit again; I will follow up soon." },
       { status: 502 },
     );
   }
 
-  return NextResponse.json({ message: "Thank you. Your enquiry has been received and an email notification was sent." });
+  return NextResponse.json({ message: "Your enquiry was submitted successfully. A confirmation email has been sent, and I’ll be in touch soon." });
 }
