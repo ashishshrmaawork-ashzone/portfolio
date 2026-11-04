@@ -2,6 +2,8 @@ import { ProjectGallery } from "@/components/project-gallery";
 import { getProjects } from "@/lib/wordpress";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Portfolio | Ashish Sharma",
   description: "Selected web development projects by Ashish Sharma.",

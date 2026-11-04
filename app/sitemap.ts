@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts, getProjects } from "@/lib/wordpress";
 
+export const dynamic = "force-dynamic";
+
 const siteUrl = "https://ashishshrmaa.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
