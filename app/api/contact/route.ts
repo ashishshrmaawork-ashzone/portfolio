@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sendContactNotification } from "@/lib/contact-email";
 import { submitContactMessage } from "@/lib/wordpress";
 
 export async function POST(request: Request) {
@@ -73,7 +74,10 @@ export async function POST(request: Request) {
       const parsed: unknown = await response.json();
       if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("Invalid response shape");
       const data = parsed as Record<string, unknown>;
-      responseData = { success: data.success === true, message: typeof data.message === "string" ? data.message : undefined };
+      responseData = {
+        success: data.success === true,
+        message: typeof data.message === "string" ? data.message : undefined,
+      };
     } catch {
       console.error("WordPress contact endpoint returned an invalid response.");
       return NextResponse.json(
@@ -90,5 +94,15 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.json({ message: responseData.message || "Message sent." });
+  try {
+    await sendContactNotification({ name, email, phone, subject, message, type });
+  } catch (error) {
+    console.error("Brevo contact notification failed.", error);
+    return NextResponse.json(
+      { message: "Your enquiry was saved, but its email notification could not be sent. Please do not submit again; contact us directly." },
+      { status: 502 },
+    );
+  }
+
+  return NextResponse.json({ message: "Thank you. Your enquiry has been received and an email notification was sent." });
 }

@@ -36,8 +36,16 @@ email, phone, request type and message. Editors can review submissions from
 **Portfolio Content → Contact submissions**. WordPress sends a notification to
 the configurable **Enquiry notification email**, initially
 `ashishshrmaa@outlook.com`. Configure a working WordPress mail/SMTP transport
-on the WordPress host so notifications can be delivered. A mail delivery
-failure is reported to the visitor; the request remains saved for review.
+on the WordPress host if you want its separate notification too. After every
+form submission is saved successfully, the Next.js API sends an email through
+Brevo so delivery does not depend on WordPress's `wp_mail` acceptance status.
+Configure `BREVO_API_KEY` and a verified `BREVO_FROM_EMAIL` in the hosting
+environment; `BREVO_FROM_NAME` optionally sets the sender name, and
+`CONTACT_NOTIFICATION_EMAIL` optionally overrides the recipient.
+The recipient defaults to `ashishshrmaa@outlook.com`. If both mail transports
+are enabled and deliver, both may send a notification. If Brevo rejects the
+notification, the submission remains saved for review and the form explicitly
+reports the email failure without inviting a duplicate submission.
 
 Install by copying the plugin folder to
 `wp-content/plugins/ashish-portfolio-cms/` on the WordPress server and
@@ -48,9 +56,10 @@ settings endpoint and contact/quote storage are available.
 
 Deploy this repository using the Next.js preset with the repository root as
 the project root and `npm run build` as the build command. Configure
-`WORDPRESS_API_URL`, install the WordPress plugin on the API site, and make
-sure WordPress can send mail to the notification address. Legacy `.html`
-routes redirect to their extensionless Next.js routes.
+`WORDPRESS_API_URL`, `BREVO_API_KEY`, and `BREVO_FROM_EMAIL` in the hosting
+environment, install the WordPress plugin on the API site, and verify the
+sender address/domain with Brevo. Legacy `.html` routes redirect to their
+extensionless Next.js routes.
 
 ## Search engine metadata
 
@@ -69,7 +78,7 @@ are sent.
 ## Production checklist
 
 1. Back up WordPress, then upload and activate the plugin ZIP from `dist/`. Existing content types and records are preserved.
-2. Configure authenticated SMTP on the WordPress host with your mail provider; keep credentials on the server, outside Git. Send a provider test to `ashishshrmaa@outlook.com`.
+2. Set `BREVO_API_KEY` and a verified `BREVO_FROM_EMAIL` in Vercel. Optionally set `BREVO_FROM_NAME` and `CONTACT_NOTIFICATION_EMAIL`; otherwise notifications go to `ashishshrmaa@outlook.com`. Keep API keys out of Git and chat.
 3. Open Portfolio Content and save site settings. Verify `/wp-json/custom/v1/site-settings` returns JSON.
 4. Deploy Next.js only after the plugin is active. Test one contact and one quote; verify private database entries, notification status and actual Outlook receipt.
 5. Configure system cron for WP-Cron retries; monitor failed notifications in Contact submissions.

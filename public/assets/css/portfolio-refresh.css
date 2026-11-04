@@ -80,7 +80,7 @@ body.white-version #contacts {
 body.white-version #portfolio::after { content: none; display: none; }
 body.white-version #features .rn-service:hover,
 body.white-version #features .rn-service:focus-within {
-    background: linear-gradient(135deg, #ffffff, #eaf2ff);
+    background: #fff;
     border-color: #93b9f4;
     box-shadow: 0 16px 36px #1e40af18;
 }
@@ -97,7 +97,7 @@ body.white-version #features .rn-service .inner .content .read-more-button i {
     color: #2563eb;
 }
 body.white-version #features .rn-service::before {
-    background: linear-gradient(90deg, transparent, #60a5fa, #2563eb, transparent);
+    content: none;
 }
 
 /* Editorial testimonial cards with a native, touch-friendly slider. */

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node tests/contact-route.mjs && node tests/contact-forwarding.mjs && node tests/content-fallback.mjs && node tests/homepage-route.mjs"
+    "test": "node tests/contact-email.mjs && node tests/contact-route.mjs && node tests/contact-forwarding.mjs && node tests/content-fallback.mjs && node tests/homepage-route.mjs"
   },
   "dependencies": {
     "next": "^16.2.7",
