@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SiteChrome } from "@/components/site-chrome";
+import { Analytics } from "@vercel/analytics/next";
 
 const fallbackMetadata: Metadata = {
   metadataBase: new URL("https://ashishshrmaa.vercel.app"),
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className="template-color-1 spybody white-version">
         <SiteChrome>{children}</SiteChrome>
+        <Analytics />
       </body>
     </html>
   );

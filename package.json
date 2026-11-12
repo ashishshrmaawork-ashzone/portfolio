@@ -10,6 +10,7 @@
     "test": "node tests/contact-email.mjs && node tests/contact-route.mjs && node tests/contact-forwarding.mjs && node tests/content-fallback.mjs && node tests/homepage-route.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "next": "^16.2.7",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
