@@ -82,11 +82,16 @@
 .identity h1 {
   margin: 11px 0 5px;
   color: #182238;
-  font-family: inherit;
   font-size: clamp(36px, 5vw, 48px);
   font-weight: 800;
   letter-spacing: -0.06em;
   line-height: 1.08;
+}
+
+:global(body.white-version) .resume h1,
+:global(body.white-version) .resume h2,
+:global(body.white-version) .resume h3 {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .identity > p {
@@ -117,7 +122,6 @@
 .section h2 {
   margin: 0 0 12px;
   color: #24334f;
-  font-family: inherit;
   font-size: 15px;
   font-weight: 800;
 }
@@ -170,7 +174,6 @@
 .projectHeading h3 {
   margin: 0;
   color: #20283a;
-  font-family: inherit;
   font-size: 13px;
   font-weight: 750;
 }

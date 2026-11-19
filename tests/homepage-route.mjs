@@ -139,7 +139,7 @@ assert.match(resumePrintButton, /Download Resume \(PDF\)/);
 assert.match(resumeStyles, /@media print/);
 assert.match(resumeStyles, /:global\(\.site-header\)/);
 assert.match(resumeStyles, /font-family: Arial, Helvetica, sans-serif/);
-assert.match(resumeStyles, /font-family: inherit/);
+assert.match(resumeStyles, /:global\(body\.white-version\) \.resume h1/);
 assert.doesNotMatch(resumeStyles, /Manrope|DM Mono/);
 assert.match(wordpress, /PLACEHOLDER_RESUME_COPY/);
 assert.match(homepage, /href="\/resume"[\s\S]*?Download resume/);
