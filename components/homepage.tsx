@@ -1,6 +1,7 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { HomepageScripts } from "@/components/homepage-scripts";
+import { HomePortfolioSection } from "@/components/home-portfolio-section";
 
 export function Homepage() {
   return (
@@ -9,7 +10,7 @@ export function Homepage() {
       <main className="main-page-wrapper">
         <HeroSection />
         <ServicesSection />
-        <PortfolioSection />
+        <HomePortfolioSection />
         <ResumeSection />
         <TestimonialsSection />
         <ContactSection />
