@@ -31,25 +31,58 @@ function projectSummary(value: string) {
   return summary.length > 180 ? `${summary.slice(0, 177).trimEnd()}...` : summary;
 }
 
+function canonicalTechnology(value: string) {
+  const technology = cleanText(value);
+  const normalized = technology.toLowerCase();
+  const aliases: Record<string, string> = {
+    js: "JavaScript",
+    javascript: "JavaScript",
+    "javascript development": "JavaScript",
+    wordpress: "WordPress",
+    "wordpress development": "WordPress",
+    "php development": "PHP",
+    "custom php development": "PHP",
+    "php backend development": "PHP",
+  };
+
+  if (aliases[normalized]) return aliases[normalized];
+  if (/(development|developemt|integration|backend|frontend)/i.test(technology)) {
+    return "";
+  }
+  return technology;
+}
+
+function uniqueTechnologies(values: string[], limit: number) {
+  const seen = new Set<string>();
+  return values
+    .map(canonicalTechnology)
+    .filter((technology) => {
+      const key = technology.toLowerCase();
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, limit);
+}
+
 export default async function ResumePage() {
   const [projects, experience, education] = await Promise.all([
     getProjects(),
     getWorkExperience(),
     getEducation(),
   ]);
-  const technologies = Array.from(
-    new Set([
+  const technologies = uniqueTechnologies(
+    [
       "PHP",
       "WordPress",
       "JavaScript",
       "React",
       "Next.js",
       ...projects.flatMap((project) =>
-        (project.technologies ?? [])
-          .map((technology) => cleanText(technology.name))
-          .filter(Boolean),
+        (project.technologies ?? []).map((technology) => technology.name),
       ),
-    ]),
+    ],
+    18,
   );
 
   return (
@@ -165,9 +198,10 @@ export default async function ResumePage() {
                   const summary = projectSummary(
                     project.short_description || project.excerpt || project.content,
                   );
-                  const projectTechnologies = (project.technologies ?? [])
-                    .map((technology) => cleanText(technology.name))
-                    .filter(Boolean);
+                  const projectTechnologies = uniqueTechnologies(
+                    (project.technologies ?? []).map((technology) => technology.name),
+                    4,
+                  );
 
                   return (
                     <article className={styles.project} key={project.id}>
