@@ -25,6 +25,10 @@ function cleanText(value: string) {
   return plainText(value).replace(/\s+/g, " ").trim();
 }
 
+function cleanEntryTitle(value: string) {
+  return cleanText(value).replace(/\s+test$/i, "");
+}
+
 function projectSummary(value: string) {
   const summary = cleanText(value);
   if (isPlaceholderResumeCopy(summary)) return "";
@@ -145,7 +149,7 @@ export default async function ResumePage() {
                   return (
                     <article className={styles.entry} key={entry.id}>
                       <div className={styles.entryHeading}>
-                        <h3>{cleanText(entry.title)}</h3>
+                        <h3>{cleanEntryTitle(entry.title)}</h3>
                         {period && <p>{period}</p>}
                       </div>
                       {description && (
@@ -173,7 +177,7 @@ export default async function ResumePage() {
                   return (
                     <article className={styles.entry} key={entry.id}>
                       <div className={styles.entryHeading}>
-                        <h3>{cleanText(entry.title)}</h3>
+                        <h3>{cleanEntryTitle(entry.title)}</h3>
                         {period && <p>{period}</p>}
                       </div>
                       {description && (
