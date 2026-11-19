@@ -54,6 +54,7 @@
   border-radius: 10px;
   padding: 52px 60px;
   background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
   box-shadow: 0 18px 55px rgb(34 49 79 / 9%);
 }
 
@@ -72,7 +73,7 @@
 
 .eyebrow {
   color: #315ee7;
-  font-family: "DM Mono", Consolas, monospace;
+  font-family: Consolas, "Courier New", monospace;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -81,7 +82,7 @@
 .identity h1 {
   margin: 11px 0 5px;
   color: #182238;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: inherit;
   font-size: clamp(36px, 5vw, 48px);
   font-weight: 800;
   letter-spacing: -0.06em;
@@ -116,7 +117,7 @@
 .section h2 {
   margin: 0 0 12px;
   color: #24334f;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: inherit;
   font-size: 15px;
   font-weight: 800;
 }
@@ -169,7 +170,7 @@
 .projectHeading h3 {
   margin: 0;
   color: #20283a;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 750;
 }
