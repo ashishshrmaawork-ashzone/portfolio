@@ -57,6 +57,20 @@ export interface ResumeEntry {
   content: string;
 }
 
+const PLACEHOLDER_RESUME_COPY =
+  /lorem ipsum|ut tincidunt est|contrary to popular belief|maecenas finibus|if you are going to use a passage|generate lorem|the education should be very interactual/i;
+
+export function isPlaceholderResumeCopy(value: string): boolean {
+  return PLACEHOLDER_RESUME_COPY.test(value);
+}
+
+function removePlaceholderResumeCopy(entries: ResumeEntry[]): ResumeEntry[] {
+  return entries.map((entry) => ({
+    ...entry,
+    content: isPlaceholderResumeCopy(entry.content || "") ? "" : entry.content || "",
+  }));
+}
+
 export interface Testimonial {
   id: number;
   title: string;
@@ -234,14 +248,14 @@ export async function getWorkExperience(): Promise<ResumeEntry[]> {
   const data: unknown = await requestJson("/workexperience", {
     next: { revalidate: 0 },
   });
-  return assertArray<ResumeEntry>(data, "workexperience");
+  return removePlaceholderResumeCopy(assertArray<ResumeEntry>(data, "workexperience"));
 }
 
 export async function getEducation(): Promise<ResumeEntry[]> {
   const data: unknown = await requestJson("/education", {
     next: { revalidate: 0 },
   });
-  return assertArray<ResumeEntry>(data, "education");
+  return removePlaceholderResumeCopy(assertArray<ResumeEntry>(data, "education"));
 }
 
 export async function getTestimonials(): Promise<Testimonial[]> {

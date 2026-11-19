@@ -652,6 +652,14 @@ ul.primary-menu.nav.nav-pills li.current a {
     letter-spacing: -.04em;
 }
 
+.section-title .resume-section-intro {
+    max-width: 560px;
+    margin: 15px auto 24px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
 .rn-service,
 .rn-portfolio,
 .resume-single-list,

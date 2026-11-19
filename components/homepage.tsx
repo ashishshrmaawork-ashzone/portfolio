@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { HomepageScripts } from "@/components/homepage-scripts";
@@ -137,6 +138,11 @@ function HeroSection() {
                     <a className="hero-text-link" href="#contacts">
                       {"Start a project "}
                       <i className="feather-arrow-right" />
+                    </a>
+                    {" "}
+                    <a className="hero-text-link" href="/resume">
+                      {"Download resume "}
+                      <i className="feather-download" />
                     </a>
                     {" "}
                   </div>
@@ -1094,428 +1100,28 @@ function PortfolioSection() {
 }
 function ResumeSection() {
   return (
-<div className="rn-resume-area rn-section-gap section-separator" id="resume">
-      {" "}
+    <section className="rn-resume-area rn-section-gap section-separator" id="resume">
       <div className="container">
-        {" "}
         <div className="row">
-          {" "}
           <div className="col-lg-12">
-            {" "}
             <div className="section-title text-center">
-              {" "}
-              <span className="subtitle">
-                {"10+ Years of Experience"}
-              </span>
-              {" "}
-              <h2 className="title">
-                {"My Resume"}
-              </h2>
-              {" "}
+              <span className="subtitle">CAREER HISTORY</span>
+              <h2 className="title">My Resume</h2>
+              <p className="resume-section-intro">
+                Explore my experience, education, technical skills, and live project portfolio.
+              </p>
+              <Link className="rn-btn" href="/resume">
+                <span>View full resume</span>
+                <i className="feather-arrow-up-right" aria-hidden="true" />
+              </Link>
             </div>
-            {" "}
           </div>
-          {" "}
         </div>
-        {" "}
-        <div className="row mt--45">
-          {" "}
-          <div className="col-lg-12">
-            {" "}
-            <ul className="rn-nav-list nav nav-tabs" id="myTabs" role="tablist">
-              {" "}
-              <li className="nav-item">
-                {" "}
-                <a className="nav-link active" id="professional-tab" data-bs-toggle="tab" href="#professional" role="tab" aria-controls="professional" aria-selected="true">
-                  {"Work Experience"}
-                </a>
-                {" "}
-              </li>
-              {" "}
-              <li className="nav-item">
-                {" "}
-                <a className="nav-link " id="education-tab" data-bs-toggle="tab" href="#education" role="tab" aria-controls="education" aria-selected="false">
-                  {"Education"}
-                </a>
-                {" "}
-              </li>
-              {" "}
-              {" "}
-            </ul>
-            {" "}
-            {" "}
-            <div className="rn-nav-content tab-content" id="myTabContents">
-              {" "}
-              {" "}
-              <div className="tab-pane fade show active" id="professional" role="tabpanel" aria-labelledby="professional-tab">
-                {" "}
-                <div className="personal-experience-inner mt--40">
-                  {" "}
-                  <div className="row">
-                    {" "}
-                    {" "}
-                    <div className="col-lg-6 col-md-12 col-12">
-                      {" "}
-                      <div className="content">
-                        {" "}
-                        <div className="experience-list">
-                          {" "}
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"Sparkle Software Solutions Private Limited"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"May 2025 - Present"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {"The education should be very\r\n                                                                interactual. Ut tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                          {" "}
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"Reinvent Digital Media Pvt Ltd"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"Team Leader & Full Stack Developer (2023-2025)"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {"Maecenas finibus nec sem ut\r\n                                                                imperdiet. Ut tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                          {" "}
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"Rewathi Innovations Pvt Ltd"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"Full Stack Developer (2021 - 2023)"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {" If you are going to use a passage.\r\n                                                                Ut tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                          {" "}
-                        </div>
-                        {" "}
-                      </div>
-                      {" "}
-                    </div>
-                    {" "}
-                    {" "}
-                    {" "}
-                    <div className="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
-                      {" "}
-                      <div className="content">
-                        {" "}
-                        <div className="experience-list">
-                          {" "}
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"3iLogics Pvt Ltd"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"Backend Developer & Researcher (Mar, 2018 - 2021)"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {"Contrary to popular belief. Ut\r\n                                                                tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                          {" "}
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"RG Infotech Pvt Ltd"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"Junior Developer (2015-2018)"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {"Generate Lorem Ipsum which looks. Ut\r\n                                                                tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                        </div>
-                        {" "}
-                      </div>
-                      {" "}
-                    </div>
-                    {" "}
-                    {" "}
-                  </div>
-                  {" "}
-                </div>
-                {" "}
-              </div>
-              {" "}
-              <div className="tab-pane show  fade single-tab-area" id="education" role="tabpanel" aria-labelledby="education-tab">
-                {" "}
-                <div className="personal-experience-inner mt--40">
-                  {" "}
-                  <div className="row">
-                    {" "}
-                    {" "}
-                    <div className="col-lg-6 col-md-12 col-12">
-                      {" "}
-                      <div className="content">
-                        {" "}
-                        <div className="experience-list">
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"Mern Stack Development"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"Unacademy.in (2024-2025)"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {"Maecenas finibus nec sem ut\r\n                                                                imperdiet. Ut tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                          {" "}
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"Programming Course"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"University of Rajasthan (2015-2016)"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {" If you are going to use a passage.\r\n                                                                Ut tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                          {" "}
-                        </div>
-                        {" "}
-                      </div>
-                      {" "}
-                    </div>
-                    {" "}
-                    {" "}
-                    {" "}
-                    <div className="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
-                      {" "}
-                      <div className="content">
-                        {" "}
-                        <div className="experience-list">
-                          {" "}
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"Master In Computer Applications"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"Rajasthan Techniacal University (2012 - 2015)"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {"Contrary to popular belief. Ut\r\n                                                                tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                          {" "}
-                          {" "}
-                          <div className="resume-single-list">
-                            {" "}
-                            <div className="inner">
-                              {" "}
-                              <div className="heading">
-                                {" "}
-                                <div className="title">
-                                  {" "}
-                                  <h4>
-                                    {"Bachlor in Computer Applications"}
-                                  </h4>
-                                  {" "}
-                                  <span>
-                                    {"Rajasthan Techniacal University (2008-2011)"}
-                                  </span>
-                                  {" "}
-                                </div>
-                                {" "}
-                                {" "}
-                              </div>
-                              {" "}
-                              <p className="description">
-                                {"Generate Lorem Ipsum which looks. Ut\r\n                                                                tincidunt est ac dolor aliquam sodales.\r\n                                                                Phasellus sed mauris hendrerit, laoreet sem in, lobortis\r\n                                                                mauris hendrerit ante."}
-                              </p>
-                              {" "}
-                            </div>
-                            {" "}
-                          </div>
-                          {" "}
-                        </div>
-                        {" "}
-                      </div>
-                      {" "}
-                    </div>
-                    {" "}
-                    {" "}
-                  </div>
-                  {" "}
-                </div>
-                {" "}
-              </div>
-              {" "}
-              {" "}
-              {" "}
-            </div>
-            {" "}
-          </div>
-          {" "}
-        </div>
-        {" "}
       </div>
-      {" "}
-    </div>
+    </section>
   );
 }
+
 function TestimonialsSection() {
   return (
 <div className="rn-testimonial-area rn-section-gap section-separator" id="testimonial">

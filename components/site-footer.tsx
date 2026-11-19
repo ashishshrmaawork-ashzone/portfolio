@@ -27,6 +27,7 @@ export function SiteFooter({ className = "rn-footer-area" }: { className?: strin
             <Link href="/#features">Services</Link>
             <Link href="/#portfolio">Portfolio</Link>
             <Link href="/#resume">Experience</Link>
+            <Link href="/resume">Download Resume</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>
