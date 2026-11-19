@@ -28,6 +28,35 @@ their existing WordPress content screens. Published WordPress posts appear at
 `/blog`; add a featured image and category in Posts to populate article cards.
 The default WordPress “Hello world!” post is excluded.
 
+### Twice-weekly automatic IT articles
+
+The production Vercel cron at `/api/cron/publish-blog` runs Mondays and
+Thursdays at 09:00 India Standard Time. It randomly selects a recent topic from
+the configured Next.js, GitHub, WordPress, Google Developers, Microsoft,
+Cloudflare and Hacker News RSS feeds, asks OpenAI to write an original article,
+and publishes it to WordPress under **Information Technology**. The source is
+linked for further reading; feed text is treated as untrusted input and is not
+copied into the article. Published topics are checked to avoid repeat posts.
+
+Before enabling automatic publishing, add these Production environment
+variables in Vercel:
+
+- `OPENAI_API_KEY`: an OpenAI API key with API billing enabled.
+- `WORDPRESS_APP_USERNAME`: the WordPress username for a publishing account.
+- `WORDPRESS_APP_PASSWORD`: an Application Password generated in that user's
+  WordPress profile. Do not use the normal account password.
+- `CRON_SECRET`: a long random secret used to authorize scheduled requests.
+- `WORDPRESS_API_URL`: the WordPress REST API root (if it differs from the
+  default in `lib/wordpress.ts`).
+- `OPENAI_MODEL` (optional): defaults to `gpt-4.1-mini`.
+
+The WordPress account needs permission to publish posts. The automation will
+create the **Information Technology** category if it does not exist and the
+account is allowed to create categories; otherwise, create it in WordPress
+first with slug `information-technology`. The cron runs only on Vercel
+Production deployments. Generated content publishes without manual review, so
+check Vercel function logs and published posts periodically for accuracy.
+
 The plugin exposes site copy at
 `/wp-json/custom/v1/site-settings`. It also provides a public submission
 endpoint for the portfolio forms. Every valid contact or quote request is

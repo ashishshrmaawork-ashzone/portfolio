@@ -349,7 +349,8 @@ export function plainText(html: string): string {
   return html
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
-    .replace(/<\/p>|<br\s*\/?>/gi, "\n\n")
+    .replace(/<\/(?:p|h[1-6]|li|blockquote)>|<br\s*\/?>/gi, "\n\n")
+    .replace(/<li\b[^>]*>/gi, "- ")
     .replace(/<[^>]*>/g, "")
     .replace(/&nbsp;|&#160;/gi, " ")
     .replace(/&amp;/gi, "&")
