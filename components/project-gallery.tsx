@@ -31,10 +31,11 @@ export function ProjectGallery({ projects }: { projects: PortfolioProject[] }) {
                   src={thumbnail}
                   fill
                   sizes="(max-width: 420px) 100vw, (max-width: 620px) 50vw, (max-width: 900px) 33vw, 25vw"
-                  quality={70}
+                  quality={90}
                   alt=""
                   loading={index < 3 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}
+                  decoding="async"
                 />
               ) : (
                 <div className="project-gallery-placeholder" aria-hidden="true">

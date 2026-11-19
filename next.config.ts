@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
     ],
     formats: ["image/webp"],
-    qualities: [70],
+    qualities: [90],
   },
   async headers() {
     return [
