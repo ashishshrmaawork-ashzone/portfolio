@@ -3,7 +3,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { HomepageScripts } from "@/components/homepage-scripts";
 import { HomePortfolioSection } from "@/components/home-portfolio-section";
-import { getEducation, getWorkExperience, plainText } from "@/lib/wordpress";
 
 export function Homepage() {
   return (
@@ -1099,103 +1098,20 @@ function PortfolioSection() {
     </div>
   );
 }
-function resumePreviewTitle(value: string) {
-  return plainText(value).replace(/\s+/g, " ").trim().replace(/\s+test$/i, "");
-}
-
-function resumePreviewText(value: string) {
-  const text = plainText(value).replace(/\s+/g, " ").trim();
-  return text.length > 180 ? `${text.slice(0, 177).trimEnd()}...` : text;
-}
-
-async function ResumeSection() {
-  const [experienceResult, educationResult] = await Promise.allSettled([
-    getWorkExperience(),
-    getEducation(),
-  ]);
-  const experience =
-    experienceResult.status === "fulfilled" ? experienceResult.value : [];
-  const education =
-    educationResult.status === "fulfilled" ? educationResult.value : [];
-
-  if (experienceResult.status === "rejected") {
-    console.error("Could not load the homepage work experience preview.", experienceResult.reason);
-  }
-  if (educationResult.status === "rejected") {
-    console.error("Could not load the homepage education preview.", educationResult.reason);
-  }
-
+function ResumeSection() {
   return (
     <section className="rn-resume-area rn-section-gap section-separator" id="resume">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="section-title text-center">
-              <span className="subtitle">CAREER HISTORY</span>
-              <h2 className="title">My Resume</h2>
-              <p className="resume-section-intro">
-                A snapshot of my professional experience and education. Explore the full resume for
-                technical skills and current projects.
-              </p>
-            </div>
+        <div className="resume-cta-panel">
+          <div className="resume-cta-mark" aria-hidden="true">
+            <i className="feather-file-text" />
           </div>
-        </div>
-        <div className="resume-preview-grid">
-          <section className="resume-preview-card" aria-labelledby="home-resume-experience">
-            <h3 id="home-resume-experience">Work Experience</h3>
-            {experienceResult.status === "rejected" ? (
-              <p className="resume-preview-empty">
-                Work experience is temporarily unavailable.
-              </p>
-            ) : experience.length > 0 ? (
-              experience.slice(0, 4).map((entry) => {
-                const description = resumePreviewText(entry.content);
-
-                return (
-                  <article className="resume-preview-entry" key={entry.id}>
-                    <div className="resume-preview-entry-heading">
-                      <h4>{resumePreviewTitle(entry.title)}</h4>
-                      <p>{plainText(entry.experience)}</p>
-                    </div>
-                    {description && (
-                      <p className="resume-preview-description">{description}</p>
-                    )}
-                  </article>
-                );
-              })
-            ) : (
-              <p className="resume-preview-empty">No work experience is published yet.</p>
-            )}
-          </section>
-          <section className="resume-preview-card" aria-labelledby="home-resume-education">
-            <h3 id="home-resume-education">Education</h3>
-            {educationResult.status === "rejected" ? (
-              <p className="resume-preview-empty">
-                Education details are temporarily unavailable.
-              </p>
-            ) : education.length > 0 ? (
-              education.slice(0, 4).map((entry) => {
-                const description = resumePreviewText(entry.content);
-
-                return (
-                  <article className="resume-preview-entry" key={entry.id}>
-                    <div className="resume-preview-entry-heading">
-                      <h4>{resumePreviewTitle(entry.title)}</h4>
-                      <p>{plainText(entry.experience)}</p>
-                    </div>
-                    {description && (
-                      <p className="resume-preview-description">{description}</p>
-                    )}
-                  </article>
-                );
-              })
-            ) : (
-              <p className="resume-preview-empty">No education details are published yet.</p>
-            )}
-          </section>
-        </div>
-        <div className="resume-preview-actions">
-          <Link className="rn-btn" href="/resume">
+          <div className="resume-cta-copy">
+            <span className="resume-cta-eyebrow">Career snapshot</span>
+            <h2 className="resume-cta-title">My Resume</h2>
+            <p>Explore my professional experience, education, skills, and projects.</p>
+          </div>
+          <Link className="rn-btn resume-cta-link" href="/resume">
             <span>View and download full resume</span>
             <i className="feather-arrow-up-right" aria-hidden="true" />
           </Link>

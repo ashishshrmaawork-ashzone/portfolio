@@ -652,88 +652,79 @@ ul.primary-menu.nav.nav-pills li.current a {
     letter-spacing: -.04em;
 }
 
-.section-title .resume-section-intro {
-    max-width: 560px;
-    margin: 15px auto 24px;
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.8;
-}
-
-.resume-preview-grid {
+.resume-cta-panel {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    max-width: 1020px;
-    margin: 34px auto 0;
-}
-
-.resume-preview-card {
-    padding: 24px;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    background: rgba(255, 255, 255, .92);
-    box-shadow: var(--shadow-soft);
-    text-align: left;
-}
-
-.resume-preview-card > h3 {
-    margin: 0 0 16px;
-    color: var(--blue-900);
-    font-size: 18px;
-    font-weight: 750;
-}
-
-.resume-preview-entry {
-    padding: 15px 0;
-    border-top: 1px solid var(--line);
-}
-
-.resume-preview-entry-heading {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 14px;
-}
-
-.resume-preview-entry-heading h4 {
-    margin: 0;
-    color: var(--blue-900);
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.resume-preview-entry-heading p {
-    flex: 0 0 auto;
-    margin: 0;
-    color: var(--muted);
-    font-size: 11px;
-    text-align: right;
-}
-
-.resume-preview-description {
-    display: -webkit-box;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 25px;
+    max-width: 970px;
+    margin: 0 auto;
+    padding: 30px 36px;
     overflow: hidden;
-    margin: 8px 0 0;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.65;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    border: 1px solid rgba(147, 197, 253, .58);
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, .94), rgba(219, 234, 254, .82));
+    box-shadow: 0 22px 55px rgba(35, 78, 145, .12);
 }
 
-.resume-preview-empty {
+.resume-cta-panel::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--blue-500), var(--blue-700));
+    content: "";
+}
+
+.resume-cta-mark {
+    display: grid;
+    width: 68px;
+    height: 68px;
+    place-items: center;
+    border: 1px solid rgba(147, 197, 253, .62);
+    border-radius: 19px;
+    background: linear-gradient(145deg, #eff6ff, #dbeafe);
+    color: var(--blue-700);
+    font-size: 27px;
+}
+
+.resume-cta-copy {
+    min-width: 0;
+}
+
+.resume-cta-eyebrow {
+    color: var(--blue-600);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+.resume-cta-title {
+    margin: 5px 0 7px;
+    color: var(--blue-900);
+    font-size: clamp(27px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.04em;
+}
+
+.resume-cta-copy p {
     margin: 0;
-    padding: 14px 0;
-    border-top: 1px solid var(--line);
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.7;
 }
 
-.resume-preview-actions {
-    display: flex;
+.resume-cta-link {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 28px;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.resume-cta-link i {
+    font-size: 15px;
 }
 
 .rn-service,
@@ -2800,24 +2791,22 @@ body.white-version::before {
         min-height: 66px;
     }
 
-    .resume-preview-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 24px;
+    .resume-cta-panel {
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 18px;
+        padding: 24px;
     }
 
-    .resume-preview-card {
-        padding: 19px;
+    .resume-cta-mark {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        font-size: 23px;
     }
 
-    .resume-preview-entry-heading {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    .resume-preview-entry-heading p {
-        text-align: left;
+    .resume-cta-link {
+        grid-column: 1 / -1;
+        justify-self: start;
     }
 
     .header-brand small {
