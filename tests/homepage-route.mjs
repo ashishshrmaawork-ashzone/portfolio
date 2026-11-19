@@ -22,6 +22,9 @@ for (const id of ["home", "features", "portfolio", "resume", "testimonial", "con
 assert.match(homepage, /id="contact-form"/);
 assert.match(homepage, /className="quote-form"/);
 assert.match(homepage, /id="quote-captcha"/);
+assert.match(homepage, /id="contact-captcha"[^>]*pattern="\[0-9\]\{4\}"/);
+assert.match(homepage, /id="quote-captcha"[^>]*pattern="\[0-9\]\{4\}"/);
+assert.doesNotMatch(homepage, /Solve the math problem|Solve this simple sum|Generate a new math/);
 assert.match(homepage, /<select id="quote-service"[^>]*defaultValue=""/);
 assert.doesNotMatch(homepage, /\sselected(?:\s|>)/);
 assert.doesNotMatch(homepage, /â|ï¿½/, "homepage copy is valid UTF-8");
@@ -61,6 +64,13 @@ for (const scriptName of scriptNames) {
 }
 
 const contentScript = await readFile(new URL("../public/assets/js/dynamic-content.js", import.meta.url), "utf8");
+const contactCaptcha = await readFile(new URL("../public/assets/js/homepage-captcha.js", import.meta.url), "utf8");
+const quoteCaptcha = await readFile(new URL("../public/assets/js/portfolio-refresh.js", import.meta.url), "utf8");
+assert.match(contactCaptcha, /Math\.floor\(1000 \+ Math\.random\(\) \* 9000\)/);
+assert.match(contactCaptcha, /\\d\{4\}/);
+assert.match(quoteCaptcha, /Math\.floor\(1000 \+ Math\.random\(\) \* 9000\)/);
+assert.match(quoteCaptcha, /\\d\{4\}/);
+assert.doesNotMatch(contactCaptcha + quoteCaptcha, /first \+ second|Solve the math|simple sum/);
 assert.match(contentScript, /fetch\('\/api\/contact'/);
 assert.match(contentScript, /request\('\/api\/portfolio\/' \+ name\)/);
 assert.match(contentScript, /type: quote \? 'quote' : 'contact'/);

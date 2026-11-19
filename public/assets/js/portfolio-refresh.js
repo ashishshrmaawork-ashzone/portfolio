@@ -39,26 +39,24 @@
     const question = document.getElementById('quote-captcha-question');
     const help = document.getElementById('quote-captcha-help');
     if (!form || !input || !question || !help) return;
-    let answer;
+    let captchaCode;
     function refresh() {
-        const first = Math.floor(Math.random() * 9) + 1;
-        const second = Math.floor(Math.random() * 9) + 1;
-        answer = first + second;
-        question.textContent = `${first} + ${second}`;
+        captchaCode = String(Math.floor(1000 + Math.random() * 9000));
+        question.textContent = captchaCode;
         input.value = '';
         input.removeAttribute('aria-invalid');
-        help.textContent = 'Solve this simple sum to continue.';
+        help.textContent = 'Enter the 4-digit code to continue.';
         help.classList.remove('captcha-error');
     }
     document.getElementById('quote-captcha-refresh').addEventListener('click', () => { refresh(); input.focus(); });
     form.addEventListener('reset', refresh);
     form.addEventListener('submit', event => {
-        if (!/^\d{1,2}$/.test(input.value.trim()) || Number(input.value) !== answer) {
+        if (!/^\d{4}$/.test(input.value.trim()) || input.value.trim() !== captchaCode) {
             event.preventDefault();
             event.stopImmediatePropagation();
             refresh();
             input.setAttribute('aria-invalid', 'true');
-            help.textContent = 'Incorrect answer. Please solve the new sum.';
+            help.textContent = 'Incorrect code. Please enter the new 4-digit code.';
             help.classList.add('captcha-error');
             input.focus();
         }

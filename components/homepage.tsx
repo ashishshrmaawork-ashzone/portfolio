@@ -1980,20 +1980,16 @@ function ContactSection() {
                           {"----"}
                         </span>
                         {" "}
-                        <span className="captcha-equals">
-                          {"="}
-                        </span>
+                        <input className="form-control" id="contact-captcha" name="contact-captcha" type="text" inputMode="numeric" pattern="[0-9]{4}" maxLength={4} placeholder="4-digit code" autoComplete="off" aria-label="Enter the 4-digit security code" required />
                         {" "}
-                        <input className="form-control" id="contact-captcha" name="contact-captcha" type="text" inputMode="numeric" maxLength={4} placeholder="Enter answer" aria-label="Enter the captcha answer" required />
-                        {" "}
-                        <button type="button" className="captcha-refresh" id="captcha-refresh" aria-label="Generate a new math captcha">
+                        <button type="button" className="captcha-refresh" id="captcha-refresh" aria-label="Generate a new 4-digit code">
                           {"↻"}
                         </button>
                         {" "}
                       </div>
                       {" "}
                       <small className="captcha-help" id="captcha-help">
-                        {"Solve the math problem to send your message."}
+                        {"Enter the 4-digit code to send your message."}
                       </small>
                       {" "}
                     </div>
@@ -2487,20 +2483,16 @@ function QuoteModal() {
                     {"..."}
                   </span>
                   {" "}
-                  <span aria-hidden="true">
-                    {"="}
-                  </span>
+                  <input id="quote-captcha" name="quote-captcha" type="text" inputMode="numeric" pattern="[0-9]{4}" maxLength={4} placeholder="4-digit code" autoComplete="off" aria-describedby="quote-captcha-question quote-captcha-help" required />
                   {" "}
-                  <input id="quote-captcha" name="quote-captcha" type="text" inputMode="numeric" pattern="[0-9]{1,2}" maxLength={2} placeholder="Answer" autoComplete="off" aria-describedby="quote-captcha-question quote-captcha-help" required />
-                  {" "}
-                  <button id="quote-captcha-refresh" type="button" aria-label="Generate a new math question">
+                  <button id="quote-captcha-refresh" type="button" aria-label="Generate a new 4-digit code">
                     {"↻"}
                   </button>
                   {" "}
                 </div>
                 {" "}
                 <small id="quote-captcha-help" role="status">
-                  {"Solve this simple sum to continue."}
+                  {"Enter the 4-digit code to continue."}
                 </small>
                 {" "}
               </div>
