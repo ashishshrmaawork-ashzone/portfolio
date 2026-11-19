@@ -237,7 +237,8 @@ function validateDraft(value: unknown): ArticleDraft {
       !Array.isArray(section.paragraphs) ||
       section.paragraphs.length !== 2 ||
       !section.paragraphs.every(
-        (paragraph) => typeof paragraph === "string" && paragraph.trim().length >= 100,
+        (paragraph: unknown) =>
+          typeof paragraph === "string" && paragraph.trim().length >= 100,
       )
     ) {
       throw new Error("OpenAI article sections did not meet the publishing requirements.");
@@ -481,7 +482,13 @@ export function isAuthorizedCronRequest(request: Request, secret: string): boole
 }
 
 export async function publishAutomaticBlogPost(
-  environment: BlogAutomationEnvironment = process.env,
+  environment: BlogAutomationEnvironment = {
+    WORDPRESS_API_URL: process.env.WORDPRESS_API_URL,
+    WORDPRESS_APP_USERNAME: process.env.WORDPRESS_APP_USERNAME,
+    WORDPRESS_APP_PASSWORD: process.env.WORDPRESS_APP_PASSWORD,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    OPENAI_MODEL: process.env.OPENAI_MODEL,
+  },
   fetcher: typeof fetch = fetch,
 ): Promise<{ published: true; title: string; url: string; source: string } | { published: false; reason: string }> {
   if (!environment.OPENAI_API_KEY?.trim()) {
