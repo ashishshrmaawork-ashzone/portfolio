@@ -116,13 +116,13 @@
 }
 
 .section {
-  margin-top: 27px;
+  margin-top: 24px;
 }
 
 .section h2 {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   color: #24334f;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
 }
 
@@ -130,8 +130,8 @@
 .description {
   margin: 0;
   color: #536176;
-  font-size: 12px;
-  line-height: 1.75;
+  font-size: 13.5px;
+  line-height: 1.6;
 }
 
 .skills {
@@ -144,17 +144,17 @@
 }
 
 .skills li {
-  padding: 6px 9px;
+  padding: 5px 8px;
   border: 1px solid #e1e8f3;
   border-radius: 3px;
   color: #3e506c;
   background: #f7f9fc;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .entries {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .entry,
@@ -174,7 +174,7 @@
 .projectHeading h3 {
   margin: 0;
   color: #20283a;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 750;
 }
 
@@ -183,7 +183,7 @@
   flex: 0 0 auto;
   margin: 0;
   color: #68748a;
-  font-size: 11px;
+  font-size: 12px;
   text-align: right;
 }
 
@@ -219,13 +219,13 @@
 }
 
 .projectHeading p {
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .projectTech {
   margin: 6px 0 0;
   color: #315ee7;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
 }
 
@@ -318,10 +318,13 @@
     box-shadow: none;
   }
 
-  .section,
   .entry,
   .project {
     break-inside: avoid;
+  }
+
+  .section h2 {
+    break-after: avoid;
   }
 
   .resume,
