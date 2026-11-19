@@ -138,7 +138,7 @@ assert.match(resumePrintButton, /window\.print\(\)/);
 assert.match(resumePrintButton, /Download Resume \(PDF\)/);
 assert.match(resumeStyles, /@media print/);
 assert.match(resumeStyles, /:global\(\.site-header\)/);
-assert.match(resumeStyles, /font-family: Arial, Helvetica, sans-serif/);
+assert.match(resumeStyles, /font-family: Georgia, "Times New Roman", serif/);
 assert.match(resumeStyles, /:global\(body\.white-version\) \.resume h1/);
 assert.doesNotMatch(resumeStyles, /Manrope|DM Mono/);
 assert.match(resumeStyles, /font-size: 13\.5px/);
