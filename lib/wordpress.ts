@@ -311,6 +311,40 @@ export async function getProject(slug: string): Promise<PortfolioProject | null>
   return project as PortfolioProject;
 }
 
+export async function getOriginalWordPressImageUrl(imageUrl: string | null): Promise<string | null> {
+  if (!imageUrl) return null;
+
+  const image = new URL(imageUrl);
+  if (
+    image.protocol !== "https:" ||
+    image.hostname !== "reactapp.kgkrealty.com" ||
+    !image.pathname.startsWith("/ashportfolio/wp-content/uploads/")
+  ) {
+    return imageUrl;
+  }
+
+  const originalPath = image.pathname.replace(/-scaled(?:-\d+)?(?=\.[^.]+$)/i, "");
+  if (originalPath === image.pathname) return imageUrl;
+
+  const original = new URL(image);
+  original.pathname = originalPath;
+
+  try {
+    const response = await fetch(original, {
+      method: "HEAD",
+      signal: AbortSignal.timeout(5000),
+      next: { revalidate: 3600 },
+    });
+    if (response.ok && response.headers.get("content-type")?.startsWith("image/")) {
+      return original.href;
+    }
+  } catch (error) {
+    console.error("Could not verify the full-resolution portfolio image.", error);
+  }
+
+  return imageUrl;
+}
+
 export function plainText(html: string): string {
   return html
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")

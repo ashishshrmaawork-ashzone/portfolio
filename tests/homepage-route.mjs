@@ -38,9 +38,13 @@ assert.doesNotMatch(homePortfolio, /portfolio-01\.jpg|portfolio-02\.jpg|fallback
 const projectGallery = await readFile(new URL("../components/project-gallery.tsx", import.meta.url), "utf8");
 const projectGalleryStyles = await readFile(new URL("../public/assets/css/project-gallery.css", import.meta.url), "utf8");
 const nextConfig = await readFile(new URL("../next.config.ts", import.meta.url), "utf8");
+const projectPage = await readFile(new URL("../app/projects/[slug]/page.tsx", import.meta.url), "utf8");
 assert.match(projectGallery, /quality=\{90\}/);
 assert.doesNotMatch(projectGalleryStyles, /project-gallery-image[^}]*filter:\s*blur|filter:\s*blur\(3px\)/);
 assert.match(nextConfig, /qualities:\s*\[90\]/);
+assert.match(projectPage, /getOriginalWordPressImageUrl/);
+assert.match(projectPage, /quality=\{90\}/);
+assert.match(projectPage, /\bpreload\b/);
 assert.match(page, /import "\.\/homepage\.css"/);
 assert.match(page, /<Homepage\s*\/>/);
 assert.doesNotMatch(page, /homepageMarkup/);

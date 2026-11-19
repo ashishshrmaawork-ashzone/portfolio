@@ -97,6 +97,30 @@ try {
   assert.equal(education[0].content, "Latest content from WordPress");
   assert.equal(resumeRequests.length, 2);
   assert.ok(resumeRequests.every((request) => request.revalidate === 0));
+
+  const imageRequests = [];
+  globalThis.fetch = async (input, init) => {
+    imageRequests.push({ url: String(input), method: init?.method });
+    return new Response(null, {
+      status: 200,
+      headers: { "content-type": "image/png" },
+    });
+  };
+  const scaledImage =
+    "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Zyva-scaled-1.png";
+  assert.equal(
+    await wordpress.getOriginalWordPressImageUrl(scaledImage),
+    "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Zyva.png",
+  );
+  assert.deepEqual(imageRequests, [{
+    url: "https://reactapp.kgkrealty.com/ashportfolio/wp-content/uploads/2026/06/Zyva.png",
+    method: "HEAD",
+  }]);
+
+  globalThis.fetch = async () => new Response(null, { status: 404 });
+  assert.equal(await wordpress.getOriginalWordPressImageUrl(scaledImage), scaledImage);
+  assert.equal(await wordpress.getOriginalWordPressImageUrl("https://example.com/image-scaled.png"),
+    "https://example.com/image-scaled.png");
   console.log("PASS API-first content, saved-data fallback, and fresh resume API data");
 } finally {
   globalThis.fetch = originalFetch;

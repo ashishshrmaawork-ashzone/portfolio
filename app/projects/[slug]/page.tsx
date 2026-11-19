@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProjects, plainText } from "@/lib/wordpress";
+import { getOriginalWordPressImageUrl, getProjects, plainText } from "@/lib/wordpress";
 
 function safeHttpUrl(value: string): string | null {
   try {
@@ -43,7 +43,9 @@ export default async function ProjectPage({
   const project = projects[index];
   const previous = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
-  const image = safeHttpUrl(project.detail_image) || safeHttpUrl(project.thumbnail_image);
+  const image = await getOriginalWordPressImageUrl(
+    safeHttpUrl(project.detail_image) || safeHttpUrl(project.thumbnail_image),
+  );
   const description = project.short_description || project.excerpt || project.content;
   const technologies = project.technologies.map((technology) => technology.name).join(", ");
 
@@ -84,8 +86,8 @@ export default async function ProjectPage({
                   width={1200}
                   height={800}
                   sizes="(max-width: 767px) 100vw, 1040px"
-                  quality={70}
-                  priority
+                  quality={90}
+                  preload
                 />
               </div>
             </div>
